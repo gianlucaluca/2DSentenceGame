@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectileData" format=3 uid="uid://dl77drogvkulh"]
+
+[ext_resource type="Script" uid="uid://cvd27v0iww1xv" path="res://scenes/battle/words/projectiles.gd" id="1_77qyr"]
+
+[resource]
+script = ExtResource("1_77qyr")
+word = "rain"
+damage_modifier = 0.9
+accuracy = 1.0
+metadata/_custom_type_script = "uid://cvd27v0iww1xv"

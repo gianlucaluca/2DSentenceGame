@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectileData" format=3 uid="uid://c7qgjug80roul"]
+
+[ext_resource type="Script" uid="uid://cvd27v0iww1xv" path="res://scenes/battle/words/projectiles.gd" id="1_5fqtm"]
+
+[resource]
+script = ExtResource("1_5fqtm")
+word = "barrel"
+damage_modifier = 1.25
+accuracy = 0.75
+metadata/_custom_type_script = "uid://cvd27v0iww1xv"

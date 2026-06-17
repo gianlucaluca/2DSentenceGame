@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AugmentData" format=3 uid="uid://duet03ibb3d8h"]
+
+[ext_resource type="Script" uid="uid://bekpigy3tmmew" path="res://scenes/battle/words/augments.gd" id="1_tb4ge"]
+
+[resource]
+script = ExtResource("1_tb4ge")
+word = "frozen"
+damage_type = "ice"
+weakness_multiplier = 2.0
+resistance_multiplier = 0.25
+metadata/_custom_type_script = "uid://bekpigy3tmmew"

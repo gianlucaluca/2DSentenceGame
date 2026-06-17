@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TargetingData" format=3 uid="uid://bh1bxrhg6moeq"]
+
+[ext_resource type="Script" uid="uid://dt57xw7162vni" path="res://scenes/battle/words/targeting.gd" id="1_vijrm"]
+
+[resource]
+script = ExtResource("1_vijrm")
+word = "on only one"
+metadata/_custom_type_script = "uid://dt57xw7162vni"

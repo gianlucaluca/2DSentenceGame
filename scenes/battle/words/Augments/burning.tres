@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AugmentData" format=3 uid="uid://cmwo2d82pv0c8"]
+
+[ext_resource type="Script" uid="uid://bekpigy3tmmew" path="res://scenes/battle/words/augments.gd" id="1_pc65n"]
+
+[resource]
+script = ExtResource("1_pc65n")
+word = "burning"
+damage_type = "fire"
+weakness_multiplier = 2.0
+resistance_multiplier = 0.25
+metadata/_custom_type_script = "uid://bekpigy3tmmew"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectileData" format=3 uid="uid://d2fou7ibdrlus"]
+
+[ext_resource type="Script" uid="uid://cvd27v0iww1xv" path="res://scenes/battle/words/projectiles.gd" id="1_qyvr8"]
+
+[resource]
+script = ExtResource("1_qyvr8")
+word = "magic bolt"
+damage_modifier = 1.0
+accuracy = 0.95
+metadata/_custom_type_script = "uid://cvd27v0iww1xv"

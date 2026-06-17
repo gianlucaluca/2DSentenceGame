@@ -1,23 +1,42 @@
 [gd_scene format=3 uid="uid://beteklpxyl8lr"]
 
 [ext_resource type="Script" uid="uid://ilkvebwsdsfw" path="res://scenes/battle/battle.gd" id="1_7gynk"]
+[ext_resource type="Script" uid="uid://bc5mtt17agd0h" path="res://scenes/battle/battle_controller.gd" id="2_0yh6x"]
+[ext_resource type="Script" uid="uid://bvtpobpqsmqhk" path="res://scenes/battle/battlePlayer.gd" id="2_ffvsa"]
+[ext_resource type="Script" uid="uid://k2wuxqodjgtl" path="res://scenes/battle/action_resolver.gd" id="3_fh7rg"]
+[ext_resource type="Script" uid="uid://djogb1c4acaop" path="res://scenes/battle/battleEnemy.gd" id="3_xd4uy"]
+[ext_resource type="Script" uid="uid://bk23kh06nk8m4" path="res://scenes/battle/battle_ui.gd" id="5_h0kxc"]
+[ext_resource type="Script" uid="uid://b1d3wb4ecbns6" path="res://scenes/battle/grimoire_window.gd" id="7_pll4o"]
 
 [node name="Battle" type="Node2D" unique_id=337949459]
 script = ExtResource("1_7gynk")
 
 [node name="Controllers" type="Node2D" parent="." unique_id=790509898]
 
-[node name="BattleController" type="Node" parent="Controllers" unique_id=499320614]
+[node name="BattleController" type="Node" parent="Controllers" unique_id=499320614 node_paths=PackedStringArray("ui", "player", "enemy", "resolver")]
+script = ExtResource("2_0yh6x")
+ui = NodePath("../../CanvasLayer/BattleUI")
+player = NodePath("../../Combat/Player")
+enemy = NodePath("../../Combat/Enemy")
+resolver = NodePath("../ActionResolver")
 
-[node name="ActionResolver" type="Node" parent="Controllers" unique_id=563734808]
-
-[node name="WordDatabase" type="Node" parent="Controllers" unique_id=773889668]
+[node name="ActionResolver" type="Node" parent="Controllers" unique_id=563734808 node_paths=PackedStringArray("ui")]
+script = ExtResource("3_fh7rg")
+ui = NodePath("../../CanvasLayer/BattleUI")
 
 [node name="Combat" type="Node2D" parent="." unique_id=867859772]
 
 [node name="Player" type="Node2D" parent="Combat" unique_id=1045718267]
+script = ExtResource("2_ffvsa")
+max_HP = 100
+max_Mana = 5
+baseDamage = 10
 
 [node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788]
+script = ExtResource("3_xd4uy")
+max_HP = 50
+weaknesses = Array[String](["ice"])
+resistances = Array[String](["fire"])
 
 [node name="Parsing" type="Node2D" parent="." unique_id=905274388]
 
@@ -28,49 +47,128 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BattleUI" unique_id=69362228]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InitiatorBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=2038045617]
-layout_mode = 2
-
-[node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=583133867]
-layout_mode = 2
-
-[node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=373673544]
-layout_mode = 2
-
-[node name="TargetingBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=1558694290]
-layout_mode = 2
+script = ExtResource("5_h0kxc")
 
 [node name="SubmitButton" type="Button" parent="CanvasLayer/BattleUI" unique_id=912977652]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 266.0
+offset_top = 257.0
+offset_right = 376.0
+offset_bottom = 295.0
+text = "Submit Spell!"
 
 [node name="GrimoireButton" type="Button" parent="CanvasLayer/BattleUI" unique_id=857287087]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.746
+anchor_top = 0.66400003
+anchor_right = -2.746
+anchor_bottom = 0.66400003
+offset_left = 331.84
+offset_top = 11.439999
+offset_right = 408.84
+offset_bottom = 44.44
+text = "Grimoire"
 
 [node name="BattleLog" type="RichTextLabel" parent="CanvasLayer/BattleUI" unique_id=1879488975]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1.0
+offset_top = 177.0
+offset_right = 260.0
+offset_bottom = 303.0
+theme_override_font_sizes/normal_font_size = 10
+fit_content = true
+scroll_following = true
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BattleUI" unique_id=346486329]
+layout_mode = 0
+offset_left = 9.999998
+offset_top = 303.99997
+offset_right = 294.0
+offset_bottom = 353.99997
+scale = Vector2(2.2, 1.1)
+alignment = 1
+
+[node name="InitiatorBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=2038045617]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=583133867]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=373673544]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="TargetingBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=1558694290]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="PlayerManaBar" type="ProgressBar" parent="CanvasLayer/BattleUI" unique_id=344317198]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 39.0
+offset_right = 70.0
+offset_bottom = 70.0
+
+[node name="PlayerHPBar" type="ProgressBar" parent="CanvasLayer/BattleUI" unique_id=636774534]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 299.0
+offset_bottom = 36.0
+
+[node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/BattleUI" unique_id=1883495564]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 35.0
 
 [node name="GrimoireWindow" type="Control" parent="CanvasLayer" unique_id=151157094]
+visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -122.0
+offset_right = -39.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+script = ExtResource("7_pll4o")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/GrimoireWindow" unique_id=1614511298]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Initiators" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=810916959]
 layout_mode = 0
@@ -91,3 +189,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="spell_submit" from="CanvasLayer/BattleUI" to="Controllers/BattleController" method="_on_sentence_submitted"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/SubmitButton" to="CanvasLayer/BattleUI" method="_on_submit"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/GrimoireButton" to="CanvasLayer/GrimoireWindow" method="_on_grimoire_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InitiatorData" format=3 uid="uid://c2ba01vdkqy04"]
+
+[ext_resource type="Script" uid="uid://b5a868dxqbfd4" path="res://scenes/battle/words/initiators.gd" id="1_r22i7"]
+
+[resource]
+script = ExtResource("1_r22i7")
+word = "I cast"
+metadata/_custom_type_script = "uid://b5a868dxqbfd4"

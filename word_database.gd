@@ -24,3 +24,12 @@ func load_words(path:String, dict:Dictionary):
 			var resource = load(path + file)
 
 			dict[resource.word] = resource
+			
+func get_initiator(input: String) -> InitiatorData:
+	return initiators.get(input)
+func get_augment(input: String) -> AugmentData:
+	return augments.get(input)
+func get_projectile(input: String) -> ProjectileData:
+	return projectiles.get(input)
+func get_targeting(input: String) -> TargetingData:
+	return targetings.get(input)
