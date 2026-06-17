@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://beteklpxyl8lr"]
+
+[ext_resource type="Script" uid="uid://ilkvebwsdsfw" path="res://scenes/battle/battle.gd" id="1_7gynk"]
+
+[node name="Battle" type="Node2D" unique_id=337949459]
+script = ExtResource("1_7gynk")
+
+[node name="Controllers" type="Node2D" parent="." unique_id=790509898]
+
+[node name="BattleController" type="Node" parent="Controllers" unique_id=499320614]
+
+[node name="ActionResolver" type="Node" parent="Controllers" unique_id=563734808]
+
+[node name="WordDatabase" type="Node" parent="Controllers" unique_id=773889668]
+
+[node name="Combat" type="Node2D" parent="." unique_id=867859772]
+
+[node name="Player" type="Node2D" parent="Combat" unique_id=1045718267]
+
+[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788]
+
+[node name="Parsing" type="Node2D" parent="." unique_id=905274388]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=663531242]
+
+[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=287248930]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BattleUI" unique_id=69362228]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InitiatorBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=2038045617]
+layout_mode = 2
+
+[node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=583133867]
+layout_mode = 2
+
+[node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=373673544]
+layout_mode = 2
+
+[node name="TargetingBox" type="LineEdit" parent="CanvasLayer/BattleUI/VBoxContainer" unique_id=1558694290]
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="CanvasLayer/BattleUI" unique_id=912977652]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="GrimoireButton" type="Button" parent="CanvasLayer/BattleUI" unique_id=857287087]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="BattleLog" type="RichTextLabel" parent="CanvasLayer/BattleUI" unique_id=1879488975]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GrimoireWindow" type="Control" parent="CanvasLayer" unique_id=151157094]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GrimoireWindow" unique_id=1614511298]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Initiators" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=810916959]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Augments" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=223939381]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Projectiles" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=1775270467]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Targeting" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=650138427]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
