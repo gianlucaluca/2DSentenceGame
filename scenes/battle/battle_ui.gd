@@ -3,12 +3,12 @@ extends Control
 
 signal spell_submit(spell: Array[String])
 
-@onready var initiator_box = $InitiatorBox
-@onready var augment_box = $AugmentBox
-@onready var projectile_box = $ProjectileBox
-@onready var targeting_box = $TargetingBox
-@onready var submit_button = $SubmitButton
-@onready var log = $BattleLog
+@export var initiator_box: LineEdit
+@export var augment_box: LineEdit
+@export var projectile_box: LineEdit
+@export var targeting_box: LineEdit
+@export var submit_button: Button
+@export var log: RichTextLabel
 	
 func _on_submit():
 

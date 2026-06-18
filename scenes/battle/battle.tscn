@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://djogb1c4acaop" path="res://scenes/battle/battleEnemy.gd" id="3_xd4uy"]
 [ext_resource type="Script" uid="uid://bk23kh06nk8m4" path="res://scenes/battle/battle_ui.gd" id="5_h0kxc"]
 [ext_resource type="Script" uid="uid://b1d3wb4ecbns6" path="res://scenes/battle/grimoire_window.gd" id="7_pll4o"]
+[ext_resource type="Texture2D" uid="uid://2us16ikdxggi" path="res://entities/player/chara-hero.png" id="8_agsc7"]
+[ext_resource type="Texture2D" uid="uid://hmqmbxhdyx6t" path="res://entities/enemies/enemy-1.png" id="8_oiw7q"]
+[ext_resource type="Texture2D" uid="uid://dcgv1duxlj7ur" path="res://scenes/battle/ffbattlebackground.png" id="8_py4tk"]
 
 [node name="Battle" type="Node2D" unique_id=337949459]
 script = ExtResource("1_7gynk")
@@ -26,28 +29,38 @@ ui = NodePath("../../CanvasLayer/BattleUI")
 
 [node name="Combat" type="Node2D" parent="." unique_id=867859772]
 
-[node name="Player" type="Node2D" parent="Combat" unique_id=1045718267]
+[node name="Player" type="Node2D" parent="Combat" unique_id=1045718267 node_paths=PackedStringArray("health_bar", "mana_bar")]
 script = ExtResource("2_ffvsa")
 max_HP = 100
 max_Mana = 5
 baseDamage = 10
+health_bar = NodePath("../../CanvasLayer/BattleUI/PlayerHPBar")
+mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 
-[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788]
+[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("3_xd4uy")
 max_HP = 50
+baseDamage = 5
 weaknesses = Array[String](["ice"])
 resistances = Array[String](["fire"])
+health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")
 
 [node name="Parsing" type="Node2D" parent="." unique_id=905274388]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=663531242]
 
-[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=287248930]
+[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=287248930 node_paths=PackedStringArray("initiator_box", "augment_box", "projectile_box", "targeting_box", "submit_button", "log")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_h0kxc")
+initiator_box = NodePath("HBoxContainer/InitiatorBox")
+augment_box = NodePath("HBoxContainer/AugmentBox")
+projectile_box = NodePath("HBoxContainer/ProjectileBox")
+targeting_box = NodePath("HBoxContainer/TargetingBox")
+submit_button = NodePath("SubmitButton")
+log = NodePath("BattleLog")
 
 [node name="SubmitButton" type="Button" parent="CanvasLayer/BattleUI" unique_id=912977652]
 layout_mode = 0
@@ -139,6 +152,28 @@ offset_top = 4.0
 offset_right = 636.0
 offset_bottom = 35.0
 
+[node name="Background" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1820817534]
+show_behind_parent = true
+z_index = -4096
+z_as_relative = false
+position = Vector2(320, 179.5)
+scale = Vector2(1.351695, 1.5301725)
+texture = ExtResource("8_py4tk")
+
+[node name="EnemySprite" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1750895314]
+position = Vector2(531, 186)
+scale = Vector2(2, 2)
+texture = ExtResource("8_oiw7q")
+region_enabled = true
+region_rect = Rect2(41.959747, 61.488068, 37.740356, 42.03566)
+
+[node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1038463990]
+position = Vector2(90, 186)
+scale = Vector2(2, 2)
+texture = ExtResource("8_agsc7")
+region_enabled = true
+region_rect = Rect2(41.716568, 109.966675, 35.286224, 43.261642)
+
 [node name="GrimoireWindow" type="Control" parent="CanvasLayer" unique_id=151157094]
 visible = false
 layout_mode = 3
@@ -192,4 +227,5 @@ offset_bottom = 40.0
 
 [connection signal="spell_submit" from="CanvasLayer/BattleUI" to="Controllers/BattleController" method="_on_sentence_submitted"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/SubmitButton" to="CanvasLayer/BattleUI" method="_on_submit"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/GrimoireButton" to="Combat/Player" method="useGrimoire"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/GrimoireButton" to="CanvasLayer/GrimoireWindow" method="_on_grimoire_button_pressed"]

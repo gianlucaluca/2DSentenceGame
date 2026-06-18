@@ -4,15 +4,12 @@ class_name BattleController
 @export var ui: BattleUI
 
 @export var player: BattlePlayer
-@export var player_health_bar: ProgressBar
-@export var player_mana_bar: ProgressBar
 
 @export var enemy: BattleEnemy
-@export var enemy_health_bar: ProgressBar
 
 @export var resolver: ActionResolver
 
-signal battleEnd(win: bool)
+signal battle_end(win: bool)
 
 enum State {
 	PLAYER_INPUT,
@@ -42,17 +39,17 @@ func end_player_turn():
 
 func enemy_turn():
 
-	player.take_damage(enemy.attack_power)
+	player.take_damage(enemy.baseDamage)
 
 	ui.add_log("Enemy attacks for %d damage." % enemy.baseDamage)
 
-	if player.hp <= 0:
+	if player.health <= 0:
 		ui.add_log("Defeat!")
-		battleEnd.emit(false)
+		battle_end.emit(false)
 
 	start_player_turn()
 
-func validate(spell: Array[String]) -> bool:
+func validate(spell: Array) -> bool:
 	if (spell.size() < 4):
 		return false
 	return (
@@ -63,7 +60,7 @@ func validate(spell: Array[String]) -> bool:
 	)
 
 
-func _on_sentence_submitted(submission: Array[String]):
+func _on_sentence_submitted(submission):
 
 	if state != State.PLAYER_INPUT:
 		return
@@ -77,9 +74,10 @@ func _on_sentence_submitted(submission: Array[String]):
 
 	resolver.resolve(submission, player, enemy)
 
-	if enemy.hp <= 0:
+	if enemy.health <= 0:
 		ui.add_log("Victory!")
-		battleEnd.emit(true)
+		battle_end.emit(true)
+		OverworldState._on_battle_finished(true)
 		return
 
 	end_player_turn()

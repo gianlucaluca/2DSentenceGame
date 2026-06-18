@@ -3,15 +3,17 @@ class_name ActionResolver
 
 @export var ui: BattleUI
 
-func resolve(spell: Array[String], attacker: BattlePlayer, target: BattleEnemy):
+func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 
-	var damage = attacker.baseDamage * WordDatabase.get_projectile(spell[2]).damage_modifer
+	var damage = attacker.baseDamage * WordDatabase.get_projectile(spell[2]).get_damage_modifier()
 
 	if WordDatabase.get_augment(spell[1]).damage_type in target.weaknesses:
-		damage *= WordDatabase.get_augment(spell[1]).weakness_multiplier
+		damage *= WordDatabase.get_augment(spell[1]).get_weakness_multiplier()
+		ui.add_log("The attack was super effective!")
 
 	if WordDatabase.get_augment(spell[1]).damage_type in target.resistances:
-		damage *= WordDatabase.get_augment(spell[1]).resistance_multiplier
+		damage *= WordDatabase.get_augment(spell[1]).get_resistance_multiplier()
+		ui.add_log("The attack was not very effective...")
 
 	damage = int(damage)
 

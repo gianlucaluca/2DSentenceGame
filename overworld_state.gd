@@ -1,0 +1,39 @@
+extends Node
+
+var overworld
+var battle_scene: PackedScene = preload("res://scenes/battle/battle.tscn")
+var current_battle = null
+
+func start_battle():
+
+	if current_battle != null:
+		return
+
+
+	current_battle = battle_scene.instantiate()
+
+	#current_battle.battle_finished.connect(_on_battle_finished)
+
+	print(overworld)
+	print(current_battle)
+	overworld.process_mode = Node.PROCESS_MODE_DISABLED
+	overworld.add_child(current_battle)
+
+	get_tree().paused = true
+
+	current_battle.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
+func _on_battle_finished(victory: bool):
+
+	get_tree().paused = false
+
+	#if victory and current_battle.enemy:
+	#	current_battle.enemy.queue_free()
+
+	current_battle.queue_free()
+	current_battle = null
+	
+	overworld.process_mode = Node.PROCESS_MODE_ALWAYS
+
+func set_overworld(newScene: Node2D):
+	overworld = newScene

@@ -6,10 +6,14 @@ var projectiles = {}
 var targetings = {}
 
 func _ready() -> void:
-	load_words("res://Words/Initiators/", initiators)
-	load_words("res://Words/Augments/", augments)
-	load_words("res://Words/Projectiles/", projectiles)
-	load_words("res://Words/Targeting/", targetings)
+	load_words("res://scenes/battle/words/Initiators/", initiators)
+	load_words("res://scenes/battle/words/Augments/", augments)
+	load_words("res://scenes/battle/words/Projectiles/", projectiles)
+	load_words("res://scenes/battle/words/Targeting/", targetings)
+	print(initiators)
+	print(augments)
+	print(projectiles)
+	print(targetings)
 
 func load_words(path:String, dict:Dictionary):
 
