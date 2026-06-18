@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://c6r5xohr5314y" path="res://components/target_manager.gd" id="17_483dn"]
 [ext_resource type="Resource" uid="uid://515f0ymuu1yy" path="res://dialogues/conversations.dialogue" id="18_713wu"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_35v04"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_713wu"]
 resource_local_to_scene = true
 shader = ExtResource("8_713wu")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -236,7 +236,7 @@ region = Rect2(160, 150, 40, 50)
 atlas = ExtResource("9_pl5fc")
 region = Rect2(200, 150, 40, 50)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_aayyk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pl5fc"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -499,13 +499,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_asror"]
 radius = 28.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1tj8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j7b0"]
 resource_local_to_scene = true
 shader = ExtResource("8_713wu")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/power = 0.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_713wu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hgdq"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -765,13 +765,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_713wu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_urw4y"]
 resource_local_to_scene = true
 shader = ExtResource("8_713wu")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/power = 0.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pl5fc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2et4"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1031,7 +1031,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdytd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tupu"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
@@ -1040,7 +1040,7 @@ script = ExtResource("9_ja7so")
 direction = 8
 metadata/_custom_type_script = ExtResource("9_ja7so")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8q2ke"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai5gw"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
@@ -1105,8 +1105,8 @@ position = Vector2(96, 240)
 position = Vector2(160, 320)
 
 [node name="AnimatedSprite2D" parent="Entities/NPC" index="2" unique_id=1449465034]
-material = SubResource("ShaderMaterial_35v04")
-sprite_frames = SubResource("SpriteFrames_aayyk")
+material = SubResource("ShaderMaterial_713wu")
+sprite_frames = SubResource("SpriteFrames_pl5fc")
 
 [node name="InteractionArea" type="Area2D" parent="Entities/NPC" index="7" unique_id=862533056]
 z_index = -1
@@ -1149,8 +1149,8 @@ target_player_id = 1
 position = Vector2(263, -127)
 
 [node name="AnimatedSprite2D" parent="Entities/NPC/NPC" index="2" unique_id=1449465034]
-material = SubResource("ShaderMaterial_d1tj8")
-sprite_frames = SubResource("SpriteFrames_713wu")
+material = SubResource("ShaderMaterial_1j7b0")
+sprite_frames = SubResource("SpriteFrames_3hgdq")
 
 [node name="InteractionArea" type="Area2D" parent="Entities/NPC/NPC" index="7" unique_id=1285649933]
 z_index = -1
@@ -1193,8 +1193,8 @@ target_player_id = 1
 position = Vector2(119, 97)
 
 [node name="AnimatedSprite2D" parent="Entities/NPC/NPC/NPC" index="2" unique_id=1449465034]
-material = SubResource("ShaderMaterial_713wu")
-sprite_frames = SubResource("SpriteFrames_pl5fc")
+material = SubResource("ShaderMaterial_urw4y")
+sprite_frames = SubResource("SpriteFrames_q2et4")
 
 [node name="InteractionArea" type="Area2D" parent="Entities/NPC/NPC/NPC" index="7" unique_id=210328296]
 z_index = -1
@@ -1241,7 +1241,7 @@ destination_name = "Transfer_02"
 metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
 
 [node name="CollisionShape2D" parent="Transfers/Transfer_01/InteractionArea" index="0"]
-shape = SubResource("RectangleShape2D_qdytd")
+shape = SubResource("RectangleShape2D_5tupu")
 
 [node name="interact" parent="Transfers/Transfer_01/StateMachine" index="0"]
 conditions = Array[ExtResource("8_anikj")]([SubResource("Resource_i3j8m")])
@@ -1257,7 +1257,7 @@ destination_name = "Transfer_01"
 metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
 
 [node name="CollisionShape2D" parent="Transfers/Transfer_02/InteractionArea" index="0"]
-shape = SubResource("RectangleShape2D_8q2ke")
+shape = SubResource("RectangleShape2D_ai5gw")
 
 [node name="interact" parent="Transfers/Transfer_02/StateMachine" index="0"]
 conditions = Array[ExtResource("8_anikj")]([SubResource("Resource_phe5r")])

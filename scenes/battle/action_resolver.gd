@@ -15,10 +15,9 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 		damage *= WordDatabase.get_augment(spell[1]).get_resistance_multiplier()
 		ui.add_log("The attack was not very effective...")
 
+
 	damage = int(damage)
-
-	target.take_damage(damage)
-
+	
 	var resultingSpell: String = ""
 	for i in 4:
 		resultingSpell += spell[i] + " "
@@ -26,5 +25,18 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	ui.add_log(
 		"You used: " + resultingSpell + "!"
 	)
+	
+	var accuracy = WordDatabase.get_projectile(spell[2]).accuracy
+	# accuracy check
+	var rng = randf()
+	print(rng)
+	if (rng > accuracy):
+		
+		ui.add_log("Just missed!")
+	else:
+		target.take_damage(damage)
+		ui.add_log("Enemy takes %d damage." % damage)
 
-	ui.add_log("Enemy takes %d damage." % damage)
+
+
+	

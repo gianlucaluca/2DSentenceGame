@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AugmentData" format=3 uid="uid://c75jonjsl0ee2"]
+
+[ext_resource type="Script" uid="uid://bekpigy3tmmew" path="res://scenes/battle/words/augments.gd" id="1_msnwn"]
+
+[resource]
+script = ExtResource("1_msnwn")
+word = "rocky"
+damage_type = "ground"
+weakness_multiplier = 1.25
+resistance_multiplier = 0.75
+metadata/_custom_type_script = "uid://bekpigy3tmmew"
