@@ -29,11 +29,12 @@ ui = NodePath("../../CanvasLayer/BattleUI")
 
 [node name="Combat" type="Node2D" parent="." unique_id=867859772]
 
-[node name="Player" type="Node2D" parent="Combat" unique_id=1045718267 node_paths=PackedStringArray("health_bar", "mana_bar")]
+[node name="Player" type="Node2D" parent="Combat" unique_id=1045718267 node_paths=PackedStringArray("grimoire", "health_bar", "mana_bar")]
 script = ExtResource("2_ffvsa")
 max_HP = 100
 max_Mana = 5
 baseDamage = 10
+grimoire = NodePath("../../CanvasLayer/GrimoireWindow")
 health_bar = NodePath("../../CanvasLayer/BattleUI/PlayerHPBar")
 mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 
@@ -77,34 +78,34 @@ anchor_left = -2.746
 anchor_top = 0.66400003
 anchor_right = -2.746
 anchor_bottom = 0.66400003
-offset_left = 331.84
-offset_top = 11.439999
-offset_right = 408.84
-offset_bottom = 44.44
+offset_left = 107.840004
+offset_top = 51.44
+offset_right = 184.84
+offset_bottom = 84.44
 text = "Grimoire"
 
 [node name="BattleLog" type="RichTextLabel" parent="CanvasLayer/BattleUI" unique_id=1879488975]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 177.0
-offset_right = 260.0
-offset_bottom = 303.0
+offset_left = 174.0
+offset_top = 73.0
+offset_right = 472.0
+offset_bottom = 245.0
 theme_override_font_sizes/normal_font_size = 10
-fit_content = true
 scroll_following = true
 horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BattleUI" unique_id=346486329]
 layout_mode = 0
-offset_left = 9.999998
+offset_left = 6.999998
 offset_top = 303.99997
-offset_right = 294.0
+offset_right = 632.0
 offset_bottom = 353.99997
-scale = Vector2(2.2, 1.1)
 alignment = 1
 
 [node name="InitiatorBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=2038045617]
 layout_mode = 2
+placeholder_text = "Initiator"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false
@@ -112,6 +113,7 @@ caret_blink = true
 
 [node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=583133867]
 layout_mode = 2
+placeholder_text = "Augment"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false
@@ -119,6 +121,7 @@ caret_blink = true
 
 [node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=373673544]
 layout_mode = 2
+placeholder_text = "Projectile"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false
@@ -126,6 +129,7 @@ caret_blink = true
 
 [node name="TargetingBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=1558694290]
 layout_mode = 2
+placeholder_text = "Target(s)"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false
@@ -174,7 +178,7 @@ texture = ExtResource("8_agsc7")
 region_enabled = true
 region_rect = Rect2(41.716568, 109.966675, 35.286224, 43.261642)
 
-[node name="GrimoireWindow" type="Control" parent="CanvasLayer" unique_id=151157094]
+[node name="GrimoireWindow" type="Control" parent="CanvasLayer" unique_id=151157094 node_paths=PackedStringArray("player")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -182,48 +186,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = -122.0
-offset_right = -39.0
-offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
 script = ExtResource("7_pll4o")
+player = NodePath("../../Combat/Player")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/GrimoireWindow" unique_id=1614511298]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Initiators" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=810916959]
+[node name="Panel" type="Panel" parent="CanvasLayer/GrimoireWindow" unique_id=625688404]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -147.2
+offset_top = -129.88571
+offset_right = 152.8
+offset_bottom = 170.11429
 
-[node name="Augments" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=223939381]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=1341610508]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 298.2
+offset_bottom = 299.8857
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b]Initiators[/b]
+I cast - casts a spell.
 
-[node name="Projectiles" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=1775270467]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[b]Augments[/b]
+burning - applies fire to a spell.
+frozen - applies ice to a spell.
 
-[node name="Targeting" type="ItemList" parent="CanvasLayer/GrimoireWindow/Panel" unique_id=650138427]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[b]Projectile[/b]
+magic bolt - very high accuracy, basic damage
+barrel - inconsistent accuracy, high damage
+rain - low accuracy, wide range
+
+[b]Targeting[/b]
+on only one - targets one enemy."
 
 [connection signal="spell_submit" from="CanvasLayer/BattleUI" to="Controllers/BattleController" method="_on_sentence_submitted"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/SubmitButton" to="CanvasLayer/BattleUI" method="_on_submit"]

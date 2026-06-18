@@ -5,12 +5,15 @@ var battle_scene: PackedScene = preload("res://scenes/battle/battle.tscn")
 var current_battle = null
 
 func start_battle():
-
+	# temporary fix, this is unsafe and bad. REMOVE THIS LATER
+	if overworld.get_name() == "Playground_01":
+		return
 	if current_battle != null:
 		return
 
-
+	
 	current_battle = battle_scene.instantiate()
+	#var player_entity = overworld.get_node("Entities/Player")
 
 	#current_battle.battle_finished.connect(_on_battle_finished)
 
@@ -37,3 +40,4 @@ func _on_battle_finished(victory: bool):
 
 func set_overworld(newScene: Node2D):
 	overworld = newScene
+	print(overworld)

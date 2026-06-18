@@ -5,6 +5,9 @@ class_name BattlePlayer
 @export var max_Mana: int 
 @export var baseDamage: int
 
+#this is temporary
+@export var grimoire: Control
+
 
 var health: int
 @export var health_bar: ProgressBar
@@ -35,6 +38,9 @@ func heal(healing: int) -> void:
 	health_bar.value = health
 	
 func useGrimoire() -> void:
-	mana_points -= 1
-	mana_bar.value = mana_points
-	manaChanged.emit(1)
+	if (grimoire.visible != false):
+		mana_points -= 1
+		mana_bar.value = mana_points
+		manaChanged.emit(1)
+	
+	

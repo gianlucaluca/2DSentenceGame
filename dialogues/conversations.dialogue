@@ -1,0 +1,18 @@
+~ controls
+Nathan: Hiya! This spike trap might give you some trouble.
+Nathan: You can run by holding SHIFT and jump with SPACE. Try both to get over!
+=> END
+
+~ talk
+Mr. Man: Woah, you're a new face.
+Mr. Man: There's some bad dudes outside. We made some spike traps to keep them out.
+Mr. Man: How you doing?
+- Good! Anything I need to know?
+	Mr. Man: Well, people have had some success hitting these guys with ice cubes.
+	Mr. Man: Don't know if you have those handy, but now's a good time to use them.
+- Gimme the deets
+	Mr. Man: What? You want a spell?
+	Mr. Man: I don't believe in magic.
+- Leave => END
+Mr. Man: Goodbye.
+=> END

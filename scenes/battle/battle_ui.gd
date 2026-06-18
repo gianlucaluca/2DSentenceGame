@@ -38,3 +38,8 @@ func set_input_enabled(enabled:bool):
 	projectile_box.editable = enabled
 	targeting_box.editable = enabled
 	submit_button.disabled = not enabled
+	
+	initiator_box.clear()
+	augment_box.clear()
+	projectile_box.clear()
+	targeting_box.clear()

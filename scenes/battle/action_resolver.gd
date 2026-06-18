@@ -20,7 +20,7 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	target.take_damage(damage)
 
 	var resultingSpell: String = ""
-	for i in 3:
+	for i in 4:
 		resultingSpell += spell[i] + " "
 	
 	ui.add_log(
