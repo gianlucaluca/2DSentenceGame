@@ -76,6 +76,7 @@ func _on_sentence_submitted(submission):
 
 	if enemy.health <= 0:
 		ui.add_log("Victory!")
+		PlayerStats.add_exp(enemy.givenXP)
 		battle_end.emit(true)
 		OverworldState._on_battle_finished(true)
 		return

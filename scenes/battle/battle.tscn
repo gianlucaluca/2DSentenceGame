@@ -42,6 +42,7 @@ mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 script = ExtResource("3_xd4uy")
 max_HP = 50
 baseDamage = 5
+givenXP = 25
 weaknesses = Array[String](["ice"])
 resistances = Array[String](["fire"])
 health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")

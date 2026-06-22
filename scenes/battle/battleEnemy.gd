@@ -3,6 +3,7 @@ class_name BattleEnemy
 
 @export var max_HP: int
 @export var baseDamage: int
+@export var givenXP: int
 @export var weaknesses: Array[String]
 @export var resistances: Array[String]
 

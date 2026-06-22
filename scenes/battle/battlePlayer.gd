@@ -1,6 +1,8 @@
 extends Node2D
 class_name BattlePlayer
 
+# THESE CURRENTLY DO NOTHING (EXCEPT MANA)
+# Edit player_stats.gd in order to modify
 @export var max_HP: int
 @export var max_Mana: int 
 @export var baseDamage: int
@@ -17,6 +19,10 @@ var mana_points: int
 signal manaChanged(amount: int)
 
 func _ready() -> void:
+	# From Globals
+	max_HP = PlayerStats.get_HP
+	baseDamage = PlayerStats.get_damage()
+	
 	health = max_HP
 	mana_points = max_Mana
 	health_bar.max_value = max_HP

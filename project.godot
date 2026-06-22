@@ -34,6 +34,7 @@ Debugger="*res://scripts/autoloads/debugger.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 WordDatabase="*uid://bjqmduntbtxhm"
 OverworldState="*uid://c86gos1rmmu82"
+PlayerStats="*uid://d1yunx8blgbf4"
 
 [dialogue_manager]
 
