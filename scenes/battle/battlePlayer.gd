@@ -20,7 +20,7 @@ signal manaChanged(amount: int)
 
 func _ready() -> void:
 	# From Globals
-	max_HP = PlayerStats.get_HP
+	max_HP = PlayerStats.get_hp()
 	baseDamage = PlayerStats.get_damage()
 	
 	health = max_HP
@@ -48,5 +48,4 @@ func useGrimoire() -> void:
 		mana_points -= 1
 		mana_bar.value = mana_points
 		manaChanged.emit(1)
-	
 	
