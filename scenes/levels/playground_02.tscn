@@ -605,12 +605,9 @@ metadata/_custom_type_script = "uid://cwq4nm0vsv1l5"
 [node name="Door" parent="Props" parent_id_path=PackedInt32Array(1811852596) index="2" unique_id=757665243 instance=ExtResource("6_nowak")]
 position = Vector2(1296, 24)
 
-[node name="InteractionArea" parent="Props/Door" index="2"]
-metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+[node name="StateMachine" parent="Props/Door" index="3" unique_id=1393467251 groups=["save"]]
 
-[node name="StateMachine" parent="Props/Door" index="3" groups=["save"]]
-
-[node name="closed" parent="Props/Door/StateMachine" index="0" node_paths=PackedStringArray("on_condition_not_met")]
+[node name="closed" parent="Props/Door/StateMachine" index="0" unique_id=1727044714 node_paths=PackedStringArray("on_condition_not_met")]
 conditions = Array[ExtResource("7_7cyed")]([SubResource("Resource_uinl2")])
 on_condition_not_met = {
 "key_required": NodePath("../msg-door_closed")

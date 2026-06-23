@@ -68,15 +68,29 @@ func _on_sentence_submitted(submission):
 	state = State.RESOLVE
 
 	if !validate(submission):
-		ui.add_log("Invalid spell. Turn lost.")
+		ui.add_log("Incorrect spell. Turn lost.")
 		end_player_turn()
 		return
 
 	resolver.resolve(submission, player, enemy)
 
 	if enemy.health <= 0:
+		enemy.visible = false
+		ui.add_log("")
 		ui.add_log("Victory!")
-		PlayerStats.add_exp(enemy.givenXP)
+		var leveled_up: bool = PlayerStats.add_exp(enemy.givenXP)
+		ui.add_log("Gained %d XP from the battle." % enemy.givenXP)
+		
+		if (leveled_up):
+			ui.add_log("You leveled up!")
+			ui.add_log("You are now level %d" % PlayerStats.get_level())
+			ui.add_log("Your battle stats have slightly increased.")
+			await get_tree().create_timer(5).timeout
+		else:
+			await get_tree().create_timer(2.5).timeout
+		# doesn't immediately terminate. some leeway
+		
+		
 		battle_end.emit(true)
 		OverworldState._on_battle_finished(true)
 		return

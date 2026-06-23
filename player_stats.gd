@@ -27,20 +27,30 @@ func get_hp() -> int:
 func get_damage() -> int:
 	return battle_start_damage
 
+func get_level() -> int:
+	return player_level
+
 func level_up() -> void:
 	player_level += 1
 	inc_hp(10)
 	inc_damage(1)
 	
 # XP isn't visible, but the system exists
-func add_exp(xp: int):
+func add_exp(xp: int) -> bool:
 	player_xp += xp
+	
+	# this code sucks im sorry
 	
 	if (player_xp > 100 && player_level < 2):
 		level_up()
+		return true
 		
 	if (player_xp > 200 && player_level < 3):
 		level_up()
+		return true
 
 	if (player_xp > 100 && player_level < 4):
 		level_up()
+		return true
+
+	return false
