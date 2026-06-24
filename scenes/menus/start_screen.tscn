@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyncm32qdovi5" path="res://scripts/start_screen.gd" id="1_flm04"]
 [ext_resource type="Texture2D" uid="uid://b1shi6ycr6yq7" path="res://scenes/menus/templogo.png" id="2_njl8u"]
+[ext_resource type="Texture2D" uid="uid://bjvxc3liqq773" path="res://scenes/menus/drbg.jpg" id="3_ec65r"]
 
 [sub_resource type="Image" id="Image_76tfe"]
 data = {
@@ -1282,6 +1283,12 @@ text = "version"
 position = Vector2(313, 85)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_njl8u")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=231982522]
+z_index = -4096
+position = Vector2(321, 182.99998)
+scale = Vector2(0.5015625, 0.5083333)
+texture = ExtResource("3_ec65r")
 
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/GridContainer/NewGame" to="." method="_on_new_game_button_up"]
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/GridContainer/Continue" to="." method="_on_continue_button_up"]

@@ -11,7 +11,7 @@ var user_prefs: UserPrefs
 
 func _ready() -> void:
 	var version = ProjectSettings.get_setting("application/config/version")
-	version_num.text = "jun24pitch"
+	version_num.text = "jun25pitch"
 	user_prefs = UserPrefs.load_or_create()
 	_check_continue()
 	if not user_prefs.language.is_empty():
