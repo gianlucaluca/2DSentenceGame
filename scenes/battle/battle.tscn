@@ -105,8 +105,6 @@ weaknesses = Array[String](["wind"])
 resistances = Array[String](["electric"])
 skin = ExtResource("11_fe4ja")
 
-[node name="Parsing" type="Node2D" parent="." unique_id=905274388]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=663531242]
 
 [node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=287248930 node_paths=PackedStringArray("initiator_box", "augment_box", "projectile_box", "targeting_box", "submit_button", "log")]
@@ -170,17 +168,17 @@ expand_to_text_length = true
 virtual_keyboard_enabled = false
 caret_blink = true
 
-[node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=583133867]
+[node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=373673544]
 layout_mode = 2
-placeholder_text = "Augment"
+placeholder_text = "Projectile"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false
 caret_blink = true
 
-[node name="ProjectileBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=373673544]
+[node name="AugmentBox" type="LineEdit" parent="CanvasLayer/BattleUI/HBoxContainer" unique_id=583133867]
 layout_mode = 2
-placeholder_text = "Projectile"
+placeholder_text = "Augment"
 alignment = 1
 expand_to_text_length = true
 virtual_keyboard_enabled = false

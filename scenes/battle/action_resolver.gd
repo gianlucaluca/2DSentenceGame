@@ -6,14 +6,14 @@ var spell_log = {}
 
 func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 
-	var damage = attacker.baseDamage * WordDatabase.get_projectile(spell[2]).get_damage_modifier()
+	var damage = attacker.baseDamage * WordDatabase.get_projectile(spell[1]).get_damage_modifier()
 
-	if !(WordDatabase.get_augment(spell[1]).damage_type == "healing"):
-		if WordDatabase.get_augment(spell[1]).damage_type in target.weaknesses:
-			damage *= WordDatabase.get_augment(spell[1]).get_weakness_multiplier()
+	if !(WordDatabase.get_augment(spell[2]).damage_type == "healing"):
+		if WordDatabase.get_augment(spell[2]).damage_type in target.weaknesses:
+			damage *= WordDatabase.get_augment(spell[2]).get_weakness_multiplier()
 			ui.add_log("The attack was super effective!")
-		if WordDatabase.get_augment(spell[1]).damage_type in target.resistances:
-			damage *= WordDatabase.get_augment(spell[1]).get_resistance_multiplier()
+		if WordDatabase.get_augment(spell[2]).damage_type in target.resistances:
+			damage *= WordDatabase.get_augment(spell[2]).get_resistance_multiplier()
 			ui.add_log("The attack was not very effective...")
 	else:
 		# negative damage to heal the player
@@ -39,7 +39,7 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	else:
 		spell_log.set(resultingSpell, 1)
 	
-	var accuracy = WordDatabase.get_projectile(spell[2]).accuracy
+	var accuracy = WordDatabase.get_projectile(spell[1]).accuracy
 	# accuracy check
 	var rng = randf()
 	print(rng)
@@ -50,7 +50,7 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 		ui.add_log("Just missed!")
 	else:
 		target.take_damage(damage)
-		if (WordDatabase.get_augment(spell[1]).damage_type == "healing"):
+		if (WordDatabase.get_augment(spell[2]).damage_type == "healing"):
 			var healed = damage * -1
 			ui.add_log("You healed yourself for %d HP." % healed)
 		else:

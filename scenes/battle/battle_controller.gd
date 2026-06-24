@@ -57,8 +57,8 @@ func validate(spell: Array) -> bool:
 		return false
 	return (
 		WordDatabase.get_initiator(spell[0]) != null and
-		WordDatabase.get_augment(spell[1]) != null and
-		WordDatabase.get_projectile(spell[2]) != null and
+		WordDatabase.get_projectile(spell[1]) != null and
+		WordDatabase.get_augment(spell[2]) != null and
 		WordDatabase.get_targeting(spell[3]) != null
 	)
 

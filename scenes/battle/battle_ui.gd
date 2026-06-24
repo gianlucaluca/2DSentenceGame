@@ -14,16 +14,16 @@ func _on_submit():
 
 # FOR FUTURE REFERENCE!!!!!
 # index 0 is initiator
-# index 1 is augment
-# index 2 is projectile
+# index 1 is projectile
+# index 2 is augment
 # index 3 is targeting
-# if size does not equal exactly 4, 
+# if size does not equal exactly 4, crashes
 	var initiator = initiator_box.text
-	var augment = augment_box.text
 	var projectile = projectile_box.text
+	var augment = augment_box.text
 	var targeting = targeting_box.text
 	
-	var submission = [initiator, augment, projectile, targeting]
+	var submission = [initiator, projectile, augment, targeting]
 
 
 	spell_submit.emit(submission)
