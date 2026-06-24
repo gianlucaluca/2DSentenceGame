@@ -35,6 +35,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 WordDatabase="*uid://bjqmduntbtxhm"
 OverworldState="*uid://c86gos1rmmu82"
 PlayerStats="*uid://d1yunx8blgbf4"
+AudioManager="*uid://dw7drsuhubgxl"
 
 [dialogue_manager]
 
@@ -169,7 +170,7 @@ inventory={
 [internationalization]
 
 locale/translations=PackedStringArray("res://local/translations.en.translation", "res://local/translations.it.translation")
-locale/translations_pot_files=PackedStringArray("res://dialogues/start.dialogue", "res://dialogues/commons.dialogue", "res://dialogues/help.dialogue", "res://dialogues/battle.dialogue", "res://dialogues/conversations.dialogue", "res://dialogues/tutorial.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/start.dialogue", "res://dialogues/commons.dialogue", "res://dialogues/help.dialogue", "res://dialogues/battle.dialogue", "res://dialogues/conversations.dialogue", "res://dialogues/tutorial.dialogue", "res://dialogues/intro.dialogue")
 
 [layer_names]
 

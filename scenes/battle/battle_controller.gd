@@ -2,12 +2,15 @@ extends Node
 class_name BattleController
 
 @export var ui: BattleUI
-
 @export var player: BattlePlayer
-
 @export var enemy: BattleEnemy
-
 @export var resolver: ActionResolver
+
+@export var hurt_sfx: AudioStreamPlayer
+@export var player_die_sfx: AudioStreamPlayer
+@export var player_level_sfx: AudioStreamPlayer
+@export var player_miss_sfx: AudioStreamPlayer
+@export var player_win_sfx: AudioStreamPlayer
 
 signal battle_end(win: bool)
 
@@ -40,11 +43,12 @@ func end_player_turn():
 func enemy_turn():
 
 	player.take_damage(enemy.baseDamage)
-
+	hurt_sfx.play()
 	ui.add_log("Enemy attacks for %d damage." % enemy.baseDamage)
 
 	if player.health <= 0:
 		ui.add_log("Defeat...")
+		player_die_sfx.play()
 		await get_tree().create_timer(4).timeout
 		battle_end.emit(false)
 		OverworldState._on_battle_finished(false)
@@ -72,6 +76,7 @@ func _on_sentence_submitted(submission):
 
 	if !validate(submission):
 		ui.add_log("Incorrect spell. Turn lost.")
+		player_miss_sfx.play()
 		end_player_turn()
 		return
 
@@ -80,17 +85,19 @@ func _on_sentence_submitted(submission):
 	if enemy.health <= 0:
 		enemy.visible = false
 		ui.add_log("")
+		player_win_sfx.play()
 		ui.add_log("Victory!")
 		var leveled_up: bool = PlayerStats.add_exp(enemy.givenXP)
 		ui.add_log("Gained %d XP from the battle." % enemy.givenXP)
 		
 		if (leveled_up):
+			player_level_sfx.play()
 			ui.add_log("You leveled up!")
 			ui.add_log("You are now level %d" % PlayerStats.get_level())
 			ui.add_log("Your battle stats have slightly increased.")
 			await get_tree().create_timer(5).timeout
 		else:
-			await get_tree().create_timer(2.5).timeout
+			await get_tree().create_timer(3).timeout
 		# doesn't immediately terminate. some leeway
 		
 		

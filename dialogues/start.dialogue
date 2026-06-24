@@ -1,11 +1,27 @@
 ~ forest_citizen_talk
 
-Citizen: Look out for that hole. You gotta jump over. There might be something down there you won't like.
-- Anything else I need to know?
-	Citizen: Well, I just tossed some barrels and they really hurt. Try them out!
-- Where should I go from here?
-	Citizen: Anywhere! The land is vast and the night is young.
-- Go away [ID:GO_AWAY_8B8051] => END
-Citizen: See you! [ID:SEE_YOU_7B034C]
+Gina: Esos que son de tierra tienen mucho HP.
+Gina: No creo que me entendieras. 
+Gina: Si se ven como "dirt", usa algo que es giratorio. 
 
 => END
+
+~ chest_talk
+Angelo: Me quede trancado aqui!
+Angelo: Ah, no me entiendes. Yo tengo este tableta:
+He gives you something. Touch it?
+- Touch it
+	You touch it. You understand him..?
+	Angelo: It's some kind of a spell to translate. Use it later when you get the chance.
+	Angelo: All you have to know is that the blue guys are weak to "fuego." No te olvidas!
+	That didn't last long...
+	=> END
+- Run!
+=> END
+
+~ end
+Anabella: You did it! Bueno!
+Anabella: This is our... how do you say it? Donde nos escondemos?
+Anabella: There's some thing down there? I don't know what it is.
+Anabella: You'll have to go fight it.
+Anabella: (Thanks for playing)

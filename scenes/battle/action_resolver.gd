@@ -2,6 +2,10 @@ extends Node
 class_name ActionResolver
 
 @export var ui: BattleUI
+@export var player_crit_sfx: AudioStreamPlayer
+@export var player_hit_sfx: AudioStreamPlayer
+@export var miss_sfx: AudioStreamPlayer
+@export var heal: AudioStreamPlayer
 var spell_log = {}
 
 func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
@@ -10,6 +14,7 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 
 	if !(WordDatabase.get_augment(spell[2]).damage_type == "healing"):
 		if WordDatabase.get_augment(spell[2]).damage_type in target.weaknesses:
+			player_crit_sfx.play()
 			damage *= WordDatabase.get_augment(spell[2]).get_weakness_multiplier()
 			ui.add_log("The attack was super effective!")
 		if WordDatabase.get_augment(spell[2]).damage_type in target.resistances:
@@ -27,9 +32,8 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	for i in 4:
 		resultingSpell += spell[i] + " "
 	
-	ui.add_log(
-		"You used: " + resultingSpell + "!"
-	)
+	#debug purposes
+	#ui.add_log("You used: " + resultingSpell + "!")
 	
 	if (spell_log.has(resultingSpell)):
 		var damage_penalty = spell_log.get(resultingSpell)
@@ -48,13 +52,16 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	if (rng > accuracy):
 		
 		ui.add_log("Just missed!")
+		miss_sfx.play()
 	else:
 		target.take_damage(damage)
 		if (WordDatabase.get_augment(spell[2]).damage_type == "healing"):
+			heal.play()
 			var healed = damage * -1
 			ui.add_log("You healed yourself for %d HP." % healed)
 		else:
 			ui.add_log("Enemy takes %d damage." % damage)
+			player_hit_sfx.play()
 
 
 

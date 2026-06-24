@@ -33,6 +33,8 @@ func _ready() -> void:
 func take_damage(damage: int) -> void:
 	# use negative damage for healing
 	health -= damage
+	if (health > max_HP):
+		health = max_HP
 	health_bar.value = health
 	
 

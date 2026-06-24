@@ -1,5 +1,8 @@
 ~ basics
-Brian: [[Hi|Hello|Howdy]], I'm here to explain some battle basics!
+Brian: Hola, te voy a explicar los basicos!
+- Sorry, I don't understand
+	Brian: Perdon! I didn't realize you were new here. I guess I should mention the basics.
+~ pick
 Brian: Use the arrow keys to pick what you want to know about.
 - Using words
 	Brian: In battles, you have four slots to create your spell.
@@ -8,12 +11,16 @@ Brian: Use the arrow keys to pick what you want to know about.
 	Brian: Augments determine what damage type your attack will be. Some enemies are weaker/stronger to certain elements.
 	Brian: Projectiles determine accuracy and damage. Go big or go home!
 	Brian: Targets are self explanatory - its who you're damaging. This can also be yourself!
+	=> pick
 - Getting more spells
 	Brian: You can find more spells by talking to locals and learning about the language!
-	Brian: Right now, everything is in English, but it will be different in the final game.
+	Brian: I have good English (I think), but others may have not done so well in school.
+	=> pick
 - The Grimoire 
 	Brian: The grimoire is a limited use reference for spells you've unlocked.
 	Brian: Your mana determines how many times you can pull it up again.
-- End the conversation
-Brian: Have fun!
+	=> pick
+- Bye!
+
+Brian: Hasta luego!
 => END

@@ -1,18 +1,19 @@
 ~ controls
-Nathan: Hiya! This spike trap might give you some trouble.
-Nathan: You can run by holding SHIFT and jump with SPACE. Try both to get over!
+Roberto: Eres un local? Nah, you don't look like it. 
+Roberto: This spike trap might give you some trouble.
+Roberto: You can run by holding SHIFT and jump with SPACE. Try both to get over!
 => END
 
 ~ talk
-Mr. Man: Woah, you're a new face.
-Mr. Man: There's some bad dudes outside. We made some spike traps to keep them out.
-Mr. Man: How you doing?
-- Good! Anything I need to know?
-	Mr. Man: Well, people have had some success hitting these guys with ice cubes.
-	Mr. Man: Don't know if you have those handy, but now's a good time to use them.
+Gaby: Hola...
+Gaby: No podría dormir; todos los locos afuera hicieron mucho ruido.
+Gaby: Como estas?
+- No entiendo...
+	Gaby: Por lo menos tratastes a communicar con migo.
+	Gaby: Verde. Grass. Hielo. Bad.
+	Gaby: Si? 
 - Gimme the deets
-	Mr. Man: What? You want a spell?
-	Mr. Man: I don't believe in magic.
+	Gaby: ¿Solo hablas inglés?
+	Gaby: ¡Odio a los touristas!
 - Leave => END
-Mr. Man: Goodbye.
 => END

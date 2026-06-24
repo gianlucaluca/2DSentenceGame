@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b42ohny1ch56a"]
+
+[ext_resource type="Script" uid="uid://dp66ice2hhj8n" path="res://scripts/state_machine/state_machine.gd" id="1_sh6lv"]
+[ext_resource type="Script" uid="uid://cwq4nm0vsv1l5" path="res://scripts/state_machine/states/state_dialogue.gd" id="2_0i13d"]
+[ext_resource type="Resource" uid="uid://dalroicxjbrds" path="res://dialogues/intro.dialogue" id="3_d7r31"]
+
+[node name="Node2D" type="Node2D" unique_id=1336661518]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1010274958 node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_sh6lv")
+current_state = NodePath("StateDialogue")
+metadata/_custom_type_script = "uid://dp66ice2hhj8n"
+
+[node name="StateDialogue" type="Node" parent="StateMachine" unique_id=711558637]
+script = ExtResource("2_0i13d")
+dialogue = ExtResource("3_d7r31")
+title = "begin"
+metadata/_custom_type_script = "uid://cwq4nm0vsv1l5"

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8vwu5i52l856" path="res://scenes/system/game_camera.tscn" id="2_7ac3l"]
 [ext_resource type="TileSet" uid="uid://bqgpil207dwjc" path="res://tilesets/tileset_01.tres" id="3_iig34"]
 [ext_resource type="Script" uid="uid://c7b1xfu55p5mn" path="res://scripts/tilemap_navigation.gd" id="4_3e81p"]
+[ext_resource type="Resource" uid="uid://dalroicxjbrds" path="res://dialogues/intro.dialogue" id="4_cyy7t"]
 [ext_resource type="PackedScene" uid="uid://bjahstm66rjpf" path="res://entities/player/player_instantiator.tscn" id="5_g7bfq"]
 [ext_resource type="PackedScene" uid="uid://d2nwo602rnihe" path="res://entities/entity.tscn" id="7_4rqrb"]
 [ext_resource type="Shader" uid="uid://blugt5j7e8tag" path="res://shaders/flash.gdshader" id="8_x7mr2"]
@@ -777,6 +778,18 @@ y_sort_enabled = true
 position = Vector2(-4.82253e-07, 2.05796e-08)
 script = ExtResource("1_1wklo")
 metadata/_edit_lock_ = true
+
+[node name="introDialogue" type="Node" parent="." unique_id=1361737055 node_paths=PackedStringArray("current_state")]
+script = ExtResource("12_p4ft5")
+current_state = NodePath("StateDialogue")
+start_delay = Vector2(0.01, 0.01)
+metadata/_custom_type_script = "uid://dp66ice2hhj8n"
+
+[node name="StateDialogue" type="Node" parent="introDialogue" unique_id=55256797]
+script = ExtResource("15_deb6a")
+dialogue = ExtResource("4_cyy7t")
+title = "begin"
+metadata/_custom_type_script = "uid://cwq4nm0vsv1l5"
 
 [node name="GameCamera2D" parent="." unique_id=1773797493 instance=ExtResource("2_7ac3l")]
 position = Vector2(320, 180)

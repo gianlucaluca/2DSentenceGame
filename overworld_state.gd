@@ -2,7 +2,9 @@ extends Node
 
 var overworld
 var battle_scene: PackedScene = preload("res://scenes/battle/battle.tscn")
+var start_level: String = "res://scenes/levels/tutorial.tscn"
 var current_battle = null
+var current_intro = null
 
 func start_battle(initiator: Node):
 	# temporary fix, this is unsafe and bad. REMOVE THIS LATER
@@ -39,17 +41,19 @@ func end_tutorial_battle():
 
 func _on_battle_finished(victory: bool):
 
-	get_tree().paused = false
+	if (victory):
+		get_tree().paused = false
 
-	#if victory and current_battle.enemy:
-	#	current_battle.enemy.queue_free()
+		#if victory and current_battle.enemy:
+		#	current_battle.enemy.queue_free()
 
-	current_battle.queue_free()
-	current_battle = null
-	
-	overworld.process_mode = Node.PROCESS_MODE_ALWAYS
+		current_battle.queue_free()
+		current_battle = null
+
+		overworld.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	if (!victory):
+		#broken..?
 		await get_tree().create_timer(1)
 		get_tree().reload_current_scene()
 

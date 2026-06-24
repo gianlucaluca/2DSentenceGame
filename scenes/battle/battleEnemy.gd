@@ -20,6 +20,9 @@ var health: int
 @export var health_bar: ProgressBar
 @export var enemy_sprite: Sprite2D
 
+@export var hurt_sfx: AudioStreamPlayer
+@export var die_sfx: AudioStreamPlayer
+
 func _ready() -> void:
 	
 	var possible_enemies:= enemy_types.get_children()

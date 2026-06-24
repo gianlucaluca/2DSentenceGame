@@ -15,6 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://bjpmfil4fahom" path="res://entities/enemies/ground.png" id="9_mvulk"]
 [ext_resource type="Texture2D" uid="uid://cwiwc0hm0bprj" path="res://entities/enemies/wind.png" id="10_w40i5"]
 [ext_resource type="Texture2D" uid="uid://dib2v6axlpe2l" path="res://entities/enemies/elec.png" id="11_fe4ja"]
+[ext_resource type="AudioStream" uid="uid://conm5ssbeiofo" path="res://sounds/die.wav" id="16_sgdsx"]
+[ext_resource type="AudioStream" uid="uid://bniae83qrxynj" path="res://sounds/hurt.wav" id="17_5moxy"]
+[ext_resource type="AudioStream" uid="uid://cqlef822s10u1" path="res://sounds/level.wav" id="18_156m4"]
+[ext_resource type="AudioStream" uid="uid://cuakltkv4mv03" path="res://sounds/miss.wav" id="19_pyfix"]
+[ext_resource type="AudioStream" uid="uid://dnhr7ayfjnr2p" path="res://sounds/playerDie.wav" id="20_8eh2s"]
+[ext_resource type="AudioStream" uid="uid://dt7y4kjcrq7v3" path="res://sounds/smash.wav" id="21_e48mi"]
+[ext_resource type="AudioStream" uid="uid://j0b40syps1fm" path="res://sounds/winner.mp3" id="22_5moxy"]
+[ext_resource type="AudioStream" uid="uid://bywoytfh7plmx" path="res://sounds/playerattack.wav" id="23_pyfix"]
+[ext_resource type="AudioStream" uid="uid://514l86job174" path="res://sounds/heal.wav" id="24_8eh2s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ofp8"]
 bg_color = Color(2.8878452e-07, 7.70092e-07, 0.7196821, 1)
@@ -30,16 +39,25 @@ script = ExtResource("1_7gynk")
 
 [node name="Controllers" type="Node2D" parent="." unique_id=790509898]
 
-[node name="BattleController" type="Node" parent="Controllers" unique_id=499320614 node_paths=PackedStringArray("ui", "player", "enemy", "resolver")]
+[node name="BattleController" type="Node" parent="Controllers" unique_id=499320614 node_paths=PackedStringArray("ui", "player", "enemy", "resolver", "hurt_sfx", "player_die_sfx", "player_level_sfx", "player_miss_sfx", "player_win_sfx")]
 script = ExtResource("2_0yh6x")
 ui = NodePath("../../CanvasLayer/BattleUI")
 player = NodePath("../../Combat/Player")
 enemy = NodePath("../../Combat/Enemy")
 resolver = NodePath("../ActionResolver")
+hurt_sfx = NodePath("../../BattleAudio/hurt")
+player_die_sfx = NodePath("../../BattleAudio/die")
+player_level_sfx = NodePath("../../BattleAudio/level")
+player_miss_sfx = NodePath("../../BattleAudio/miss")
+player_win_sfx = NodePath("../../BattleAudio/winner")
 
-[node name="ActionResolver" type="Node" parent="Controllers" unique_id=563734808 node_paths=PackedStringArray("ui")]
+[node name="ActionResolver" type="Node" parent="Controllers" unique_id=563734808 node_paths=PackedStringArray("ui", "player_crit_sfx", "player_hit_sfx", "miss_sfx", "heal")]
 script = ExtResource("3_fh7rg")
 ui = NodePath("../../CanvasLayer/BattleUI")
+player_crit_sfx = NodePath("../../BattleAudio/smash")
+player_hit_sfx = NodePath("../../BattleAudio/playerAttack")
+miss_sfx = NodePath("../../BattleAudio/miss")
+heal = NodePath("../../BattleAudio/heal")
 
 [node name="Combat" type="Node2D" parent="." unique_id=867859772]
 
@@ -52,37 +70,39 @@ grimoire = NodePath("../../CanvasLayer/GrimoireWindow")
 health_bar = NodePath("../../CanvasLayer/BattleUI/PlayerHPBar")
 mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 
-[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("enemy_types", "health_bar", "enemy_sprite")]
+[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("enemy_types", "health_bar", "enemy_sprite", "hurt_sfx", "die_sfx")]
 script = ExtResource("3_xd4uy")
 enemy_types = NodePath("../EnemyStats")
 health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")
 enemy_sprite = NodePath("../../CanvasLayer/BattleUI/EnemySprite")
+hurt_sfx = NodePath("../../BattleAudio/hurt")
+die_sfx = NodePath("../../BattleAudio/die")
 
 [node name="EnemyStats" type="Node" parent="Combat" unique_id=1920851875]
 
 [node name="FireEnemy" type="Node" parent="Combat/EnemyStats" unique_id=885998866]
 script = ExtResource("6_fisqk")
-max_HP = 100
+max_HP = 110
 baseDamage = 15
-givenXP = 25
+givenXP = 50
 weaknesses = Array[String](["ice"])
 resistances = Array[String](["fire"])
 skin = ExtResource("7_n6gaa")
 
 [node name="IceEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1073438689]
 script = ExtResource("6_fisqk")
-max_HP = 100
+max_HP = 110
 baseDamage = 15
-givenXP = 25
+givenXP = 50
 weaknesses = Array[String](["fire"])
 resistances = Array[String](["ice"])
 skin = ExtResource("8_6ofp8")
 
 [node name="RockEnemy" type="Node" parent="Combat/EnemyStats" unique_id=345711804]
 script = ExtResource("6_fisqk")
-max_HP = 200
-baseDamage = 10
-givenXP = 25
+max_HP = 150
+baseDamage = 8
+givenXP = 50
 weaknesses = Array[String](["wind"])
 resistances = Array[String](["ground"])
 skin = ExtResource("9_mvulk")
@@ -91,7 +111,7 @@ skin = ExtResource("9_mvulk")
 script = ExtResource("6_fisqk")
 max_HP = 100
 baseDamage = 15
-givenXP = 25
+givenXP = 50
 weaknesses = Array[String](["electric"])
 resistances = Array[String](["wind"])
 skin = ExtResource("10_w40i5")
@@ -100,7 +120,7 @@ skin = ExtResource("10_w40i5")
 script = ExtResource("6_fisqk")
 max_HP = 100
 baseDamage = 20
-givenXP = 25
+givenXP = 50
 weaknesses = Array[String](["wind"])
 resistances = Array[String](["electric"])
 skin = ExtResource("11_fe4ja")
@@ -265,19 +285,53 @@ offset_bottom = 299.8857
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[b]Initiators[/b]
-I cast - casts a spell.
+Lanzo un - casts a spell.
 
 [b]Augments[/b]
-burning - applies fire to a spell.
-frozen - applies ice to a spell.
+ardiente - element of fire
+helado - element of ice
+electrico - element of electricity
+giratorio - element of wind
+rocoso - element of earth
+curativo - element of health
 
 [b]Projectile[/b]
-magic bolt - very high accuracy, basic damage
-barrel - inconsistent accuracy, high damage
-rain - low accuracy, wide range
+proyectil magico - very high accuracy, basic damage
+barril - large barrel with poor targeting, great damage
+nubarron - cloud, too big to miss
 
 [b]Targeting[/b]
-on only one - targets one enemy."
+en uno solo - targets one enemy.
+sobre mi mismo - targets yourself"
+
+[node name="BattleAudio" type="Node" parent="." unique_id=890985931]
+
+[node name="die" type="AudioStreamPlayer" parent="BattleAudio" unique_id=1160019812]
+stream = ExtResource("16_sgdsx")
+
+[node name="hurt" type="AudioStreamPlayer" parent="BattleAudio" unique_id=535067972]
+stream = ExtResource("17_5moxy")
+
+[node name="level" type="AudioStreamPlayer" parent="BattleAudio" unique_id=1697292466]
+stream = ExtResource("18_156m4")
+
+[node name="miss" type="AudioStreamPlayer" parent="BattleAudio" unique_id=552108951]
+stream = ExtResource("19_pyfix")
+
+[node name="playerDie" type="AudioStreamPlayer" parent="BattleAudio" unique_id=2055446983]
+stream = ExtResource("20_8eh2s")
+
+[node name="smash" type="AudioStreamPlayer" parent="BattleAudio" unique_id=1486622931]
+stream = ExtResource("21_e48mi")
+
+[node name="winner" type="AudioStreamPlayer" parent="BattleAudio" unique_id=1429035558]
+stream = ExtResource("22_5moxy")
+
+[node name="playerAttack" type="AudioStreamPlayer" parent="BattleAudio" unique_id=499949578]
+stream = ExtResource("23_pyfix")
+
+[node name="heal" type="AudioStreamPlayer" parent="BattleAudio" unique_id=1359518161]
+stream = ExtResource("24_8eh2s")
 
 [connection signal="spell_submit" from="CanvasLayer/BattleUI" to="Controllers/BattleController" method="_on_sentence_submitted"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/SubmitButton" to="CanvasLayer/BattleUI" method="_on_submit"]
