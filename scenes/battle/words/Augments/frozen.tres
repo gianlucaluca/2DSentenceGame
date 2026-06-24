@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_tb4ge")
-word = "frozen"
+word = "helado"
 damage_type = "ice"
 weakness_multiplier = 2.0
 resistance_multiplier = 0.25

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_msnwn")
-word = "rocky"
+word = "rocoso"
 damage_type = "ground"
 weakness_multiplier = 1.25
 resistance_multiplier = 0.75

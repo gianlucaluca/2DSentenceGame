@@ -43,7 +43,7 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	# accuracy check
 	var rng = randf()
 	print(rng)
-	if (WordDatabase.get_targeting(spell[3])).word == "on myself":
+	if (WordDatabase.get_targeting(spell[3])).word == "sobre mi mismo":
 		attacker.take_damage(damage)
 	if (rng > accuracy):
 		

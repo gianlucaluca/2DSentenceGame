@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4d2t6")
-word = "whirling"
+word = "giratorio"
 damage_type = "wind"
 weakness_multiplier = 1.5
 resistance_multiplier = 0.5

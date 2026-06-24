@@ -45,6 +45,8 @@ func take_damage(damage: int) -> void:
 		return
 	health -= damage
 	health_bar.value = health
+	if (health <= 0):
+		enemy_sprite.queue_free()
 	
 func heal(healing: int) -> void:
 	if (healing < 0):

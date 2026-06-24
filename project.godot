@@ -169,7 +169,7 @@ inventory={
 [internationalization]
 
 locale/translations=PackedStringArray("res://local/translations.en.translation", "res://local/translations.it.translation")
-locale/translations_pot_files=PackedStringArray("res://dialogues/start.dialogue", "res://dialogues/commons.dialogue", "res://dialogues/help.dialogue", "res://dialogues/battle.dialogue", "res://dialogues/conversations.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/start.dialogue", "res://dialogues/commons.dialogue", "res://dialogues/help.dialogue", "res://dialogues/battle.dialogue", "res://dialogues/conversations.dialogue", "res://dialogues/tutorial.dialogue")
 
 [layer_names]
 

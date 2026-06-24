@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_5fqtm")
-word = "barrel"
+word = "barril"
 damage_modifier = 1.25
 accuracy = 0.75
 metadata/_custom_type_script = "uid://cvd27v0iww1xv"

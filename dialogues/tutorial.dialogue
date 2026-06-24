@@ -1,0 +1,32 @@
+~ start
+Roberto: ¡Hola chico! 
+Roberto: Welcome to the world of Scrollscribers!
+Roberto: Its obvious you're looking for our prized healing spell. Its existance is no secret.
+Roberto: But I'm very sure its impossible to get on your own.
+Roberto: I know communication may be difficult, but the locals are definently willing to help you. Some are not so friendly.
+Roberto: Good luck and go forth!
+
+=> END
+
+~ battle
+Roberto: Hi, I teleported over here.
+Roberto: Get ready for a lesson!
+
+do OverworldState.tutorial_battle()
+
+Roberto: Welcome to the battle screen!
+Roberto: Here, you'll see many buttons reflecting what you can do during your turn.
+Roberto: At the bottom, you have your spell casting menu. Each part of a sentence takes up a different slot.
+Roberto: You can mix and match any phrases you want. For example, you could have a healing magic bolt, or a flaming one if you're feeling spicy!
+Roberto: Battles are turn based, so be completely sure you've written what you want. Getting it wrong wastes your turn!
+Roberto: At the top left, you have your Grimoire, this land's book of knowledge. Or, I guess its your copy.
+Roberto: There, you can reference the spells that are available. However, every reference costs Mana Points.
+Roberto: Run out of mana, and no more book! 
+Roberto: Some enemies have elemental weaknesses and resistances. Mix and match to find what hits them hard!
+Roberto: Additionally, you'll have to mix up your own spells. Casting the same spell multiple times will result in it dealing less damage.
+Roberto: Some more of my friends will explain a bit more up ahead. I promise you'll be great!
+
+do OverworldState.end_tutorial_battle()
+
+Goodbye!
+=> END

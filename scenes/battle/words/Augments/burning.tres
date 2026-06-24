@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_pc65n")
-word = "burning"
+word = "ardiente"
 damage_type = "fire"
 weakness_multiplier = 2.0
 resistance_multiplier = 0.25

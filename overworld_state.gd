@@ -28,6 +28,15 @@ func start_battle(initiator: Node):
 
 	current_battle.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
+func tutorial_battle():
+	current_battle = battle_scene.instantiate()
+	overworld.add_child(current_battle)
+	
+func end_tutorial_battle():
+	current_battle.queue_free()
+	current_battle = null
+	
+
 func _on_battle_finished(victory: bool):
 
 	get_tree().paused = false
@@ -41,6 +50,7 @@ func _on_battle_finished(victory: bool):
 	overworld.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	if (!victory):
+		await get_tree().create_timer(1)
 		get_tree().reload_current_scene()
 
 func set_overworld(newScene: Node2D):

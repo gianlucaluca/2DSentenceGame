@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ycrql")
-word = "healing"
+word = "curativo"
 damage_type = "healing"
 metadata/_custom_type_script = "uid://bekpigy3tmmew"

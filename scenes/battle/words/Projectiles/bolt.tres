@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_qyvr8")
-word = "magic bolt"
+word = "proyectil magico"
 damage_modifier = 1.0
 accuracy = 0.95
 metadata/_custom_type_script = "uid://cvd27v0iww1xv"
