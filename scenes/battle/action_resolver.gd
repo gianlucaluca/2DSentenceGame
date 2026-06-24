@@ -2,6 +2,7 @@ extends Node
 class_name ActionResolver
 
 @export var ui: BattleUI
+var spell_log = {}
 
 func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 
@@ -16,7 +17,9 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 			ui.add_log("The attack was not very effective...")
 	else:
 		# negative damage to heal the player
-		damage *= -1
+		damage *= -1 * 2
+
+	
 
 	damage = int(damage)
 	
@@ -27,6 +30,14 @@ func resolve(spell: Array, attacker: BattlePlayer, target: BattleEnemy):
 	ui.add_log(
 		"You used: " + resultingSpell + "!"
 	)
+	
+	if (spell_log.has(resultingSpell)):
+		var damage_penalty = spell_log.get(resultingSpell)
+		damage *= .25 * damage_penalty
+		spell_log.set(resultingSpell, damage_penalty + 1)
+		ui.add_log("Spell has been used before. Isn't as effective...")
+	else:
+		spell_log.set(resultingSpell, 1)
 	
 	var accuracy = WordDatabase.get_projectile(spell[2]).accuracy
 	# accuracy check

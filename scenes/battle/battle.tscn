@@ -7,10 +7,23 @@
 [ext_resource type="Script" uid="uid://djogb1c4acaop" path="res://scenes/battle/battleEnemy.gd" id="3_xd4uy"]
 [ext_resource type="Script" uid="uid://bk23kh06nk8m4" path="res://scenes/battle/battle_ui.gd" id="5_h0kxc"]
 [ext_resource type="Script" uid="uid://cdilvnx85gog4" path="res://scenes/battle/enemy_stats.gd" id="6_fisqk"]
+[ext_resource type="Texture2D" uid="uid://dvdk16a7j2nhl" path="res://entities/enemies/fire.png" id="7_n6gaa"]
 [ext_resource type="Script" uid="uid://b1d3wb4ecbns6" path="res://scenes/battle/grimoire_window.gd" id="7_pll4o"]
+[ext_resource type="Texture2D" uid="uid://dkeiidamobo5a" path="res://entities/enemies/ice.png" id="8_6ofp8"]
 [ext_resource type="Texture2D" uid="uid://2us16ikdxggi" path="res://entities/player/chara-hero.png" id="8_agsc7"]
-[ext_resource type="Texture2D" uid="uid://hmqmbxhdyx6t" path="res://entities/enemies/enemy-1.png" id="8_oiw7q"]
 [ext_resource type="Texture2D" uid="uid://dcgv1duxlj7ur" path="res://scenes/battle/ffbattlebackground.png" id="8_py4tk"]
+[ext_resource type="Texture2D" uid="uid://bjpmfil4fahom" path="res://entities/enemies/ground.png" id="9_mvulk"]
+[ext_resource type="Texture2D" uid="uid://cwiwc0hm0bprj" path="res://entities/enemies/wind.png" id="10_w40i5"]
+[ext_resource type="Texture2D" uid="uid://dib2v6axlpe2l" path="res://entities/enemies/elec.png" id="11_fe4ja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ofp8"]
+bg_color = Color(2.8878452e-07, 7.70092e-07, 0.7196821, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1kk3"]
+bg_color = Color(0.16892952, 0.7220363, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6gaa"]
+bg_color = Color(0.81931573, 0.20326042, 2.8878452e-07, 1)
 
 [node name="Battle" type="Node2D" unique_id=337949459]
 script = ExtResource("1_7gynk")
@@ -39,10 +52,11 @@ grimoire = NodePath("../../CanvasLayer/GrimoireWindow")
 health_bar = NodePath("../../CanvasLayer/BattleUI/PlayerHPBar")
 mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 
-[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("enemy_types", "health_bar")]
+[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("enemy_types", "health_bar", "enemy_sprite")]
 script = ExtResource("3_xd4uy")
 enemy_types = NodePath("../EnemyStats")
 health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")
+enemy_sprite = NodePath("../../CanvasLayer/BattleUI/EnemySprite")
 
 [node name="EnemyStats" type="Node" parent="Combat" unique_id=1920851875]
 
@@ -53,6 +67,7 @@ baseDamage = 15
 givenXP = 25
 weaknesses = Array[String](["ice"])
 resistances = Array[String](["fire"])
+skin = ExtResource("7_n6gaa")
 
 [node name="IceEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1073438689]
 script = ExtResource("6_fisqk")
@@ -61,6 +76,7 @@ baseDamage = 15
 givenXP = 25
 weaknesses = Array[String](["fire"])
 resistances = Array[String](["ice"])
+skin = ExtResource("8_6ofp8")
 
 [node name="RockEnemy" type="Node" parent="Combat/EnemyStats" unique_id=345711804]
 script = ExtResource("6_fisqk")
@@ -69,6 +85,7 @@ baseDamage = 10
 givenXP = 25
 weaknesses = Array[String](["wind"])
 resistances = Array[String](["ground"])
+skin = ExtResource("9_mvulk")
 
 [node name="WindEnemy" type="Node" parent="Combat/EnemyStats" unique_id=967387676]
 script = ExtResource("6_fisqk")
@@ -77,6 +94,7 @@ baseDamage = 15
 givenXP = 25
 weaknesses = Array[String](["electric"])
 resistances = Array[String](["wind"])
+skin = ExtResource("10_w40i5")
 
 [node name="ElecEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1227516999]
 script = ExtResource("6_fisqk")
@@ -85,6 +103,7 @@ baseDamage = 20
 givenXP = 25
 weaknesses = Array[String](["wind"])
 resistances = Array[String](["electric"])
+skin = ExtResource("11_fe4ja")
 
 [node name="Parsing" type="Node2D" parent="." unique_id=905274388]
 
@@ -181,6 +200,7 @@ offset_left = 1.0
 offset_top = 39.0
 offset_right = 70.0
 offset_bottom = 70.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ofp8")
 
 [node name="PlayerHPBar" type="ProgressBar" parent="CanvasLayer/BattleUI" unique_id=636774534]
 layout_mode = 0
@@ -188,6 +208,7 @@ offset_left = 2.0
 offset_top = 5.0
 offset_right = 299.0
 offset_bottom = 36.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_t1kk3")
 
 [node name="EnemyHPBar" type="ProgressBar" parent="CanvasLayer/BattleUI" unique_id=1883495564]
 layout_mode = 0
@@ -195,20 +216,20 @@ offset_left = 339.0
 offset_top = 4.0
 offset_right = 636.0
 offset_bottom = 35.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_n6gaa")
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1820817534]
 show_behind_parent = true
 z_index = -4096
 z_as_relative = false
-position = Vector2(320, 179.5)
-scale = Vector2(1.351695, 1.5301725)
+position = Vector2(319.5, 179.5)
+scale = Vector2(1.3580508, 1.5560343)
 texture = ExtResource("8_py4tk")
 
 [node name="EnemySprite" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1750895314]
 position = Vector2(531, 186)
 scale = Vector2(2, 2)
-texture = ExtResource("8_oiw7q")
-region_enabled = true
+texture = ExtResource("10_w40i5")
 region_rect = Rect2(41.959747, 61.488068, 37.740356, 42.03566)
 
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/BattleUI" unique_id=1038463990]

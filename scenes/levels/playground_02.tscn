@@ -526,13 +526,13 @@ animations = [{
 radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rqqvt"]
-radius = 78.0
+radius = 170.04706
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tl0j8"]
 radius = 172.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dln11"]
-radius = 24.0
+radius = 84.05355
 
 [sub_resource type="Resource" id="Resource_nowak"]
 script = ExtResource("29_dddes")
@@ -541,7 +541,7 @@ metadata/_custom_type_script = ExtResource("29_dddes")
 
 [sub_resource type="Curve2D" id="Curve2D_dddes"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 320, 128, 0, 0, 0, 0, 800, 128, 0, 0, 0, 0, 800, 384, 0, 0, 0, 0, 320, 384)
+"points": PackedVector2Array(0, 0, 0, 0, 320, 128, 0, 0, 0, 0, 757, 133, 0, 0, 0, 0, 713, 309, 0, 0, 0, 0, 320, 384)
 }
 point_count = 4
 
@@ -786,6 +786,242 @@ path_postprocessing = 1
 script = ExtResource("27_dln11")
 target_player_id = 1
 
+[node name="Enemy2" parent="Entities" parent_id_path=PackedInt32Array(1318223486) index="3" unique_id=1351120923 groups=["enemy"] instance=ExtResource("13_wnv1r")]
+position = Vector2(1296, 89)
+wall_min_slide_angle = 0.261799
+
+[node name="TargetDetectionArea" type="Area2D" parent="Entities/Enemy2" index="9" unique_id=899807350]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy2/TargetDetectionArea" index="0" unique_id=1519500575]
+shape = SubResource("CircleShape2D_rqqvt")
+debug_color = Color(0.92459, 0.233751, 0.371876, 0.42)
+
+[node name="FollowingArea" type="Area2D" parent="Entities/Enemy2" index="10" unique_id=169855827]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy2/FollowingArea" index="0" unique_id=1798972911]
+shape = SubResource("CircleShape2D_tl0j8")
+debug_color = Color(0.625727, 0.514428, 0.380604, 0.42)
+
+[node name="TargetReachedArea" type="Area2D" parent="Entities/Enemy2" index="11" unique_id=1822483344]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy2/TargetReachedArea" index="0" unique_id=1484725242]
+shape = SubResource("CircleShape2D_dln11")
+
+[node name="ActionStates" type="Node" parent="Entities/Enemy2" index="14" unique_id=1594469505 node_paths=PackedStringArray("current_state")]
+script = ExtResource("7_7ld0m")
+current_state = NodePath("idle")
+metadata/_custom_type_script = "uid://dp66ice2hhj8n"
+
+[node name="death" type="Node" parent="Entities/Enemy2/ActionStates" index="0" unique_id=679240564 node_paths=PackedStringArray("node")]
+script = ExtResource("15_yfo47")
+node = NodePath("../..")
+method_name = "queue_free"
+send_statemachine_params = false
+metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
+
+[node name="idle" type="Node" parent="Entities/Enemy2/ActionStates" index="1" unique_id=632703042]
+script = ExtResource("15_cgx8t")
+
+[node name="wander" type="Node" parent="Entities/Enemy2/ActionStates" index="2" unique_id=859695776]
+script = ExtResource("16_yfo47")
+wander_time_range = Vector2(1, 2)
+
+[node name="follow" type="Node" parent="Entities/Enemy2/ActionStates" index="3" unique_id=2086937729 node_paths=PackedStringArray("navigation_agent", "target_manager")]
+script = ExtResource("18_cgx8t")
+navigation_agent = NodePath("../../NavigationAgent2D")
+target_manager = NodePath("../../TargetManager")
+
+[node name="start_wander" type="Node" parent="Entities/Enemy2/ActionStates/follow" index="0" unique_id=433784988 node_paths=PackedStringArray("interaction_area", "on_completion")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../TargetReachedArea")
+one_shot = false
+on_completion = [NodePath("../../wander")]
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="start_path" type="Node" parent="Entities/Enemy2/ActionStates/follow" index="1" unique_id=924482311 node_paths=PackedStringArray("interaction_area", "on_leaving")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../FollowingArea")
+on_leaving = [NodePath("../../path")]
+one_shot = false
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="+speed" type="Node" parent="Entities/Enemy2/ActionStates/follow" index="2" unique_id=1368389415]
+script = ExtResource("10_cgx8t")
+state_machine_key = "entity"
+on_enter = Dictionary[String, Variant]({
+"speed_multiplier": 1.25
+})
+on_exit = Dictionary[String, Variant]({
+"speed_multiplier": 1.0
+})
+metadata/_custom_type_script = "uid://di3e8lyqvjft4"
+
+[node name="path" type="Node" parent="Entities/Enemy2/ActionStates" index="4" unique_id=1267916770 node_paths=PackedStringArray("path")]
+script = ExtResource("17_k1igu")
+path = NodePath("../../../../Events/enemy_path")
+
+[node name="start_follow" type="Node" parent="Entities/Enemy2/ActionStates/path" index="0" unique_id=375047711 node_paths=PackedStringArray("interaction_area", "on_completion")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../TargetDetectionArea")
+one_shot = false
+check = 12
+on_completion = [NodePath("../../follow")]
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="+friction" type="Node" parent="Entities/Enemy2/ActionStates/path" index="1" unique_id=1484605900]
+script = ExtResource("10_cgx8t")
+state_machine_key = "entity"
+on_enter = Dictionary[String, Variant]({
+"friction_multiplier": 6.0
+})
+on_exit = Dictionary[String, Variant]({
+"friction_multiplier": 1.0
+})
+metadata/_custom_type_script = "uid://di3e8lyqvjft4"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Entities/Enemy2" index="15" unique_id=908107798]
+path_postprocessing = 1
+
+[node name="TargetManager" type="Node2D" parent="Entities/Enemy2" index="16" unique_id=1000603121]
+script = ExtResource("27_dln11")
+target_player_id = 1
+
+[node name="Enemy3" parent="Entities" parent_id_path=PackedInt32Array(1318223486) index="4" unique_id=980542348 groups=["enemy"] instance=ExtResource("13_wnv1r")]
+position = Vector2(1016, 137)
+wall_min_slide_angle = 0.261799
+
+[node name="TargetDetectionArea" type="Area2D" parent="Entities/Enemy3" index="9" unique_id=1985264355]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy3/TargetDetectionArea" index="0" unique_id=1685824865]
+shape = SubResource("CircleShape2D_rqqvt")
+debug_color = Color(0.92459, 0.233751, 0.371876, 0.42)
+
+[node name="FollowingArea" type="Area2D" parent="Entities/Enemy3" index="10" unique_id=1356814544]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy3/FollowingArea" index="0" unique_id=1972668573]
+shape = SubResource("CircleShape2D_tl0j8")
+debug_color = Color(0.625727, 0.514428, 0.380604, 0.42)
+
+[node name="TargetReachedArea" type="Area2D" parent="Entities/Enemy3" index="11" unique_id=1862972985]
+z_index = -1
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("6_js8n1")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Enemy3/TargetReachedArea" index="0" unique_id=1489045795]
+shape = SubResource("CircleShape2D_dln11")
+
+[node name="ActionStates" type="Node" parent="Entities/Enemy3" index="14" unique_id=1364085772 node_paths=PackedStringArray("current_state")]
+script = ExtResource("7_7ld0m")
+current_state = NodePath("path")
+metadata/_custom_type_script = "uid://dp66ice2hhj8n"
+
+[node name="death" type="Node" parent="Entities/Enemy3/ActionStates" index="0" unique_id=1016900933 node_paths=PackedStringArray("node")]
+script = ExtResource("15_yfo47")
+node = NodePath("../..")
+method_name = "queue_free"
+send_statemachine_params = false
+metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
+
+[node name="idle" type="Node" parent="Entities/Enemy3/ActionStates" index="1" unique_id=1002951009]
+script = ExtResource("15_cgx8t")
+
+[node name="wander" type="Node" parent="Entities/Enemy3/ActionStates" index="2" unique_id=962553868]
+script = ExtResource("16_yfo47")
+wander_time_range = Vector2(1, 2)
+
+[node name="follow" type="Node" parent="Entities/Enemy3/ActionStates" index="3" unique_id=132039517 node_paths=PackedStringArray("navigation_agent", "target_manager")]
+script = ExtResource("18_cgx8t")
+navigation_agent = NodePath("../../NavigationAgent2D")
+target_manager = NodePath("../../TargetManager")
+
+[node name="start_wander" type="Node" parent="Entities/Enemy3/ActionStates/follow" index="0" unique_id=932720389 node_paths=PackedStringArray("interaction_area", "on_completion")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../TargetReachedArea")
+one_shot = false
+on_completion = [NodePath("../../wander")]
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="start_path" type="Node" parent="Entities/Enemy3/ActionStates/follow" index="1" unique_id=662726139 node_paths=PackedStringArray("interaction_area", "on_leaving")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../FollowingArea")
+on_leaving = [NodePath("../../path")]
+one_shot = false
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="+speed" type="Node" parent="Entities/Enemy3/ActionStates/follow" index="2" unique_id=1465949092]
+script = ExtResource("10_cgx8t")
+state_machine_key = "entity"
+on_enter = Dictionary[String, Variant]({
+"speed_multiplier": 1.25
+})
+on_exit = Dictionary[String, Variant]({
+"speed_multiplier": 1.0
+})
+metadata/_custom_type_script = "uid://di3e8lyqvjft4"
+
+[node name="path" type="Node" parent="Entities/Enemy3/ActionStates" index="4" unique_id=2093557884 node_paths=PackedStringArray("path")]
+script = ExtResource("17_k1igu")
+path = NodePath("../../../../Events/enemy_path2")
+
+[node name="start_follow" type="Node" parent="Entities/Enemy3/ActionStates/path" index="0" unique_id=389406579 node_paths=PackedStringArray("interaction_area", "on_completion")]
+script = ExtResource("8_wnv1r")
+interaction_area = NodePath("../../../TargetDetectionArea")
+one_shot = false
+check = 12
+on_completion = [NodePath("../../follow")]
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
+
+[node name="+friction" type="Node" parent="Entities/Enemy3/ActionStates/path" index="1" unique_id=1804958647]
+script = ExtResource("10_cgx8t")
+state_machine_key = "entity"
+on_enter = Dictionary[String, Variant]({
+"friction_multiplier": 6.0
+})
+on_exit = Dictionary[String, Variant]({
+"friction_multiplier": 1.0
+})
+metadata/_custom_type_script = "uid://di3e8lyqvjft4"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Entities/Enemy3" index="15" unique_id=1583654973]
+path_postprocessing = 1
+
+[node name="TargetManager" type="Node2D" parent="Entities/Enemy3" index="16" unique_id=890570556]
+script = ExtResource("27_dln11")
+target_player_id = 1
+
 [node name="Transfer_West" parent="Transfers" parent_id_path=PackedInt32Array(696169018) index="0" unique_id=2112319528 instance=ExtResource("13_q0u2y")]
 position = Vector2(-80, 192)
 rotation = 1.5708
@@ -854,6 +1090,10 @@ state_machine_key = "entity"
 on_enter = Dictionary[String, Variant]({
 "input_enabled": true
 })
+
+[node name="enemy_path2" type="Path2D" parent="Events" parent_id_path=PackedInt32Array(115158039) index="2" unique_id=1889080401]
+position = Vector2(720, 24)
+curve = SubResource("Curve2D_dddes")
 
 [editable path="Props/Potion"]
 [editable path="Props/Chest"]

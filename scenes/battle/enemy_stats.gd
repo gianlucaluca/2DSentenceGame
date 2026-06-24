@@ -8,7 +8,7 @@ class_name BattleEnemyStats
 # refer to scenes/battle/words/augments for element names
 @export var weaknesses: Array[String]
 @export var resistances: Array[String]
-@export var skin: Image
+@export var skin: CompressedTexture2D
 
 func get_hp() -> int:
 	return max_HP
@@ -20,5 +20,5 @@ func get_weaknesses() -> Array[String]:
 	return weaknesses
 func get_resistances() -> Array[String]:
 	return resistances
-func get_image() -> Image:
+func get_image() -> CompressedTexture2D:
 	return skin
