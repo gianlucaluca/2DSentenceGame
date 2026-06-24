@@ -42,7 +42,6 @@ func change_hp(value, from = ""):
 		new_hp = max_hp
 	if new_hp < hp: # Damaged
 		print_rich("%s [color=red]damaged[/color] by %s! HP: %s" % [owner.name, from, new_hp])
-		OverworldState.start_battle()
 		if on_hp_decrease:
 			on_hp_decrease.enable()
 	elif new_hp > hp: # Recovered

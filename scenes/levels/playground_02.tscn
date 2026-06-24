@@ -668,7 +668,7 @@ on_completion = [NodePath("../interact")]
 script = ExtResource("27_dln11")
 target_player_id = 1
 
-[node name="Enemy1" parent="Entities" parent_id_path=PackedInt32Array(1318223486) index="2" unique_id=1873837865 instance=ExtResource("13_wnv1r")]
+[node name="Enemy1" parent="Entities" parent_id_path=PackedInt32Array(1318223486) index="2" unique_id=1873837865 groups=["enemy"] instance=ExtResource("13_wnv1r")]
 position = Vector2(320, 129)
 wall_min_slide_angle = 0.261799
 

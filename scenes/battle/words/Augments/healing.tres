@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AugmentData" format=3 uid="uid://dxddds0ph4qb7"]
+
+[ext_resource type="Script" uid="uid://bekpigy3tmmew" path="res://scenes/battle/words/augments.gd" id="1_ycrql"]
+
+[resource]
+script = ExtResource("1_ycrql")
+word = "healing"
+damage_type = "healing"
+metadata/_custom_type_script = "uid://bekpigy3tmmew"

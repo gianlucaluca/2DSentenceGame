@@ -31,18 +31,11 @@ func _ready() -> void:
 	mana_bar.value = mana_points
 
 func take_damage(damage: int) -> void:
-	if (damage < 1):
-		return
+	# use negative damage for healing
 	health -= damage
 	health_bar.value = health
 	
-#probably unused
-func heal(healing: int) -> void:
-	if (healing < 0):
-		return
-	health += healing
-	health_bar.value = health
-	
+
 func useGrimoire() -> void:
 	if (grimoire.visible != false):
 		mana_points -= 1

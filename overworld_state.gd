@@ -4,7 +4,7 @@ var overworld
 var battle_scene: PackedScene = preload("res://scenes/battle/battle.tscn")
 var current_battle = null
 
-func start_battle():
+func start_battle(initiator: Node):
 	# temporary fix, this is unsafe and bad. REMOVE THIS LATER
 	# need this to be the otherway around, but whatever
 	if overworld.get_name() == "Playground_01":
@@ -22,6 +22,7 @@ func start_battle():
 	print(current_battle)
 	overworld.process_mode = Node.PROCESS_MODE_DISABLED
 	overworld.add_child(current_battle)
+	initiator.queue_free()
 
 	get_tree().paused = true
 

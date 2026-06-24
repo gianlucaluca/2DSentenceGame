@@ -18,6 +18,8 @@ func _on_hitbox_entered(hitbox: HitBox):
 	if !hitbox or !health_controller:
 		return
 	health_controller.change_hp(hitbox.hp_change, hitbox.owner.name)
+	if (hitbox.owner.is_in_group("enemy")):
+		OverworldState.start_battle(hitbox.owner)
 
 func _on_entity_action_performed(action: String) -> void:
 	process_mode = PROCESS_MODE_DISABLED if action == "jump" else PROCESS_MODE_INHERIT

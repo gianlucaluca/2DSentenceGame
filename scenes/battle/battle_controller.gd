@@ -44,7 +44,8 @@ func enemy_turn():
 	ui.add_log("Enemy attacks for %d damage." % enemy.baseDamage)
 
 	if player.health <= 0:
-		ui.add_log("Defeat!")
+		ui.add_log("Defeat...")
+		await get_tree().create_timer(4).timeout
 		battle_end.emit(false)
 		OverworldState._on_battle_finished(false)
 		return
