@@ -46,6 +46,8 @@ func enemy_turn():
 	if player.health <= 0:
 		ui.add_log("Defeat!")
 		battle_end.emit(false)
+		OverworldState._on_battle_finished(false)
+		return
 
 	start_player_turn()
 

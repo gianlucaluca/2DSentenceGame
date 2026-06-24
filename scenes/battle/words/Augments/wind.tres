@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AugmentData" format=3 uid="uid://p4via0iiwfb1"]
+
+[ext_resource type="Script" uid="uid://bekpigy3tmmew" path="res://scenes/battle/words/augments.gd" id="1_4d2t6"]
+
+[resource]
+script = ExtResource("1_4d2t6")
+word = "whirling"
+damage_type = "wind"
+weakness_multiplier = 1.5
+resistance_multiplier = 0.5
+metadata/_custom_type_script = "uid://bekpigy3tmmew"

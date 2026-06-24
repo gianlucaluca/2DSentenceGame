@@ -6,6 +6,7 @@ var current_battle = null
 
 func start_battle():
 	# temporary fix, this is unsafe and bad. REMOVE THIS LATER
+	# need this to be the otherway around, but whatever
 	if overworld.get_name() == "Playground_01":
 		return
 	if current_battle != null:
@@ -37,6 +38,9 @@ func _on_battle_finished(victory: bool):
 	current_battle = null
 	
 	overworld.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	if (!victory):
+		get_tree().reload_current_scene()
 
 func set_overworld(newScene: Node2D):
 	overworld = newScene

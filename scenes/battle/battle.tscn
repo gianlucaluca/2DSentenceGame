@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://k2wuxqodjgtl" path="res://scenes/battle/action_resolver.gd" id="3_fh7rg"]
 [ext_resource type="Script" uid="uid://djogb1c4acaop" path="res://scenes/battle/battleEnemy.gd" id="3_xd4uy"]
 [ext_resource type="Script" uid="uid://bk23kh06nk8m4" path="res://scenes/battle/battle_ui.gd" id="5_h0kxc"]
+[ext_resource type="Script" uid="uid://cdilvnx85gog4" path="res://scenes/battle/enemy_stats.gd" id="6_fisqk"]
 [ext_resource type="Script" uid="uid://b1d3wb4ecbns6" path="res://scenes/battle/grimoire_window.gd" id="7_pll4o"]
 [ext_resource type="Texture2D" uid="uid://2us16ikdxggi" path="res://entities/player/chara-hero.png" id="8_agsc7"]
 [ext_resource type="Texture2D" uid="uid://hmqmbxhdyx6t" path="res://entities/enemies/enemy-1.png" id="8_oiw7q"]
@@ -38,14 +39,52 @@ grimoire = NodePath("../../CanvasLayer/GrimoireWindow")
 health_bar = NodePath("../../CanvasLayer/BattleUI/PlayerHPBar")
 mana_bar = NodePath("../../CanvasLayer/BattleUI/PlayerManaBar")
 
-[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("health_bar")]
+[node name="Enemy" type="Node2D" parent="Combat" unique_id=1432618788 node_paths=PackedStringArray("enemy_types", "health_bar")]
 script = ExtResource("3_xd4uy")
-max_HP = 50
-baseDamage = 5
+enemy_types = NodePath("../EnemyStats")
+health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")
+
+[node name="EnemyStats" type="Node" parent="Combat" unique_id=1920851875]
+
+[node name="FireEnemy" type="Node" parent="Combat/EnemyStats" unique_id=885998866]
+script = ExtResource("6_fisqk")
+max_HP = 100
+baseDamage = 15
 givenXP = 25
 weaknesses = Array[String](["ice"])
 resistances = Array[String](["fire"])
-health_bar = NodePath("../../CanvasLayer/BattleUI/EnemyHPBar")
+
+[node name="IceEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1073438689]
+script = ExtResource("6_fisqk")
+max_HP = 100
+baseDamage = 15
+givenXP = 25
+weaknesses = Array[String](["fire"])
+resistances = Array[String](["ice"])
+
+[node name="RockEnemy" type="Node" parent="Combat/EnemyStats" unique_id=345711804]
+script = ExtResource("6_fisqk")
+max_HP = 200
+baseDamage = 10
+givenXP = 25
+weaknesses = Array[String](["wind"])
+resistances = Array[String](["ground"])
+
+[node name="WindEnemy" type="Node" parent="Combat/EnemyStats" unique_id=967387676]
+script = ExtResource("6_fisqk")
+max_HP = 100
+baseDamage = 15
+givenXP = 25
+weaknesses = Array[String](["electric"])
+resistances = Array[String](["wind"])
+
+[node name="ElecEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1227516999]
+script = ExtResource("6_fisqk")
+max_HP = 100
+baseDamage = 20
+givenXP = 25
+weaknesses = Array[String](["wind"])
+resistances = Array[String](["electric"])
 
 [node name="Parsing" type="Node2D" parent="." unique_id=905274388]
 
