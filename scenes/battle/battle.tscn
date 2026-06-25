@@ -82,7 +82,7 @@ die_sfx = NodePath("../../BattleAudio/die")
 
 [node name="FireEnemy" type="Node" parent="Combat/EnemyStats" unique_id=885998866]
 script = ExtResource("6_fisqk")
-max_HP = 110
+max_HP = 40
 baseDamage = 15
 givenXP = 50
 weaknesses = Array[String](["ice"])
@@ -91,7 +91,7 @@ skin = ExtResource("7_n6gaa")
 
 [node name="IceEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1073438689]
 script = ExtResource("6_fisqk")
-max_HP = 110
+max_HP = 50
 baseDamage = 15
 givenXP = 50
 weaknesses = Array[String](["fire"])
@@ -100,7 +100,7 @@ skin = ExtResource("8_6ofp8")
 
 [node name="RockEnemy" type="Node" parent="Combat/EnemyStats" unique_id=345711804]
 script = ExtResource("6_fisqk")
-max_HP = 150
+max_HP = 60
 baseDamage = 8
 givenXP = 50
 weaknesses = Array[String](["wind"])
@@ -109,7 +109,7 @@ skin = ExtResource("9_mvulk")
 
 [node name="WindEnemy" type="Node" parent="Combat/EnemyStats" unique_id=967387676]
 script = ExtResource("6_fisqk")
-max_HP = 100
+max_HP = 40
 baseDamage = 15
 givenXP = 50
 weaknesses = Array[String](["electric"])
@@ -118,7 +118,7 @@ skin = ExtResource("10_w40i5")
 
 [node name="ElecEnemy" type="Node" parent="Combat/EnemyStats" unique_id=1227516999]
 script = ExtResource("6_fisqk")
-max_HP = 100
+max_HP = 40
 baseDamage = 20
 givenXP = 50
 weaknesses = Array[String](["wind"])
@@ -301,7 +301,7 @@ barril - large barrel with poor targeting, great damage
 nubarron - cloud, too big to miss
 
 [b]Targeting[/b]
-en uno solo - targets one enemy.
+a uno solo - targets one enemy.
 sobre mi mismo - targets yourself"
 
 [node name="BattleAudio" type="Node" parent="." unique_id=890985931]

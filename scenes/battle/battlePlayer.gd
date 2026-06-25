@@ -22,6 +22,7 @@ func _ready() -> void:
 	# From Globals
 	max_HP = PlayerStats.get_hp()
 	baseDamage = PlayerStats.get_damage()
+	max_Mana = PlayerStats.get_mana()
 	
 	health = max_HP
 	mana_points = max_Mana

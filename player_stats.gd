@@ -9,6 +9,7 @@ var battle_start_hp: int = 100
 var battle_start_damage: int = 10
 var player_level: int = 1
 var player_xp: int = 0
+var player_mana = 20
 
 
 # Global functions to increase / decrease the player's stats. 
@@ -27,6 +28,11 @@ func get_hp() -> int:
 func get_damage() -> int:
 	return battle_start_damage
 
+func get_mana() -> int:
+	return player_mana
+func lower_mana() -> void:
+	player_mana -= 1
+
 func get_level() -> int:
 	return player_level
 
@@ -34,6 +40,7 @@ func level_up() -> void:
 	player_level += 1
 	inc_hp(10)
 	inc_damage(1)
+	player_mana -= 1
 	
 # XP isn't visible, but the system exists
 func add_exp(xp: int) -> bool:
